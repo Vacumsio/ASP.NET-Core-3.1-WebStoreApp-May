@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<WebStoreApp.Models.Employee>
 @{
     Layout = null;
 }
@@ -7,13 +7,39 @@
 
 <html>
 
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Index</title>
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
 
-    <body>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Firstname</td>
+                <td>Surname</td>
+                <td>Patronymic</td>
+                <td>Age</td>
+                <td></td>
+            </tr>
+        </thead>
 
-    </body>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.Firstname</td>
+                <td>@employee.Surname</td>
+                <td>@employee.Patronymic</td>
+                <td>@employee.Age</td>
+                <td><a href="/Home/EmployeeDetails/@employee.Id">Подробнее</a></td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</body>
 
 </html>
