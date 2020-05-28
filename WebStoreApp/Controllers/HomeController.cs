@@ -14,8 +14,6 @@ namespace WebStoreApp.Controllers
 
         #region Каждый в свой контроллер отправить
 
-        public IActionResult BlogSingle() => View();
-
         public IActionResult Cart() => View();
 
         public IActionResult CheckOut() => View();
