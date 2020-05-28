@@ -13,7 +13,6 @@ namespace WebStoreApp.Controllers
         public IActionResult Index() => View();
 
         #region Каждый в свой контроллер отправить
-        public IActionResult Blog() => View();
 
         public IActionResult BlogSingle() => View();
 
