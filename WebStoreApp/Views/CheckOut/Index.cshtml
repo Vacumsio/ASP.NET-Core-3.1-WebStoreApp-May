@@ -1,7 +1,33 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-}
+﻿<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="active">Check out</li>
+            </ol>
+        </div><!--/breadcrums-->
 
-<h2>Index</h2>
+        <div class="step-one">
+            <h2 class="heading">Step1</h2>
+        </div>
 
+        <partial name="Partial/_CheckoutOptions" />        
+
+        <div class="register-req">
+            <p>Please use Register And Checkout to easily get access to your order history, or use Checkout as Guest</p>
+        </div><!--/register-req-->
+
+        <partial name="Partial/_ShopperInformation" />
+        
+        <div class="review-payment">
+            <h2>Review & Payment</h2>
+        </div>
+
+        <div class="table-responsive cart_info">
+            <partial name="Partial/_TableCondensed" />
+        </div>
+        <div class="payment-options">
+            <partial name="Partial/_PaymentOptions" />
+        </div>
+    </div>
+</section> <!--/#cart_items-->
