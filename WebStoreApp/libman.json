@@ -9,10 +9,6 @@
     {
       "library": "font-awesome@4.0.3",
       "destination": "wwwroot/lib/font-awesome/"
-    },    
-    {
-      "library": "prettyPhoto@3.1.6",
-      "destination": "wwwroot/lib/prettyPhoto/"
     },
     {
       "provider": "unpkg",
@@ -33,6 +29,10 @@
         "dist/js/bootstrap.min.js",
         "dist/js/npm.js"
       ]
+    },
+    {
+      "library": "prettyPhoto@3.1.6",
+      "destination": "wwwroot/lib/prettyPhoto/"
     }
   ]
 }
