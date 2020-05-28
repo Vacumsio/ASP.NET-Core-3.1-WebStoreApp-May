@@ -1,7 +1,13 @@
-﻿
-@{
-    ViewData["Title"] = "EmployeeDetails";
-}
+﻿@model WebStoreApp.Models.Employee
 
-<h2>EmployeeDetails</h2>
+    <div class="container">
+        <h1>Информация о сотруднике: @Model.Id</h1>
 
+        <p>@Model.Surname</p>
+        <p>@Model.Firstname</p>
+        <p>@Model.Patronymic</p>
+        <p>@Model.Age</p>
+        
+        <hr />
+        <a asp-controller="Employees" asp-action="Index">К списку сотрудников</a>
+    </div>

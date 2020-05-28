@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
 }
 <div>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <td>id</td>
@@ -23,7 +23,7 @@
                 <td>@employee.Firstname</td>
                 <td>@employee.Patronymic</td>
                 <td>@employee.Age</td>
-                <td><a asp-controller="Employee" asp-action="EmployeeDetails" asp-route-id="@employee.Id">Информация</a></td>
+                <td><a asp-controller="Employees" asp-action="EmployeeDetails" asp-route-id="@employee.Id">Информация</a></td>
             </tr>
 
             }
