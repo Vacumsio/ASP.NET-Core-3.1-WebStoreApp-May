@@ -9,7 +9,7 @@ namespace WebStoreApp.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly List<Employee> _Employees = new List<Employee>
+        /*private static readonly List<Employee> _Employees = new List<Employee>
         {
             new Employee
             {
@@ -43,7 +43,7 @@ namespace WebStoreApp.Controllers
                 Patronymic = "Сидорович",
                 Age = 50
             },
-        };
+        };*/
         public IActionResult Index() => View();
        
     }
