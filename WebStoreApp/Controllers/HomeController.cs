@@ -44,18 +44,7 @@ namespace WebStoreApp.Controllers
                 Age = 50
             },
         };
-        public IActionResult Index()
-        {
-            return View(_Employees);
-        }
-        public IActionResult EmployeeDetails(int id)
-        {
-            var employee = _Employees.FirstOrDefault(e => e.Id == id);
-            if (employee is null)
-            {
-                return NotFound();
-            }
-            return View(employee);
-        }
+        public IActionResult Index() => View();
+       
     }
 }
