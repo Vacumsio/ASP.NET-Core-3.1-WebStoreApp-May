@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>Фамилия</td>
+                <td>Имя</td>
+                <td>Отчество</td>
+                <td>Возраст</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var employee in Model)
+            {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.Surname</td>
+                <td>@employee.Firstname</td>
+                <td>@employee.Patronymic</td>
+                <td>@employee.Age</td>
+                <td><a asp-controller="Employee" asp-action="EmployeeDetails" asp-route-id="@employee.Id">Информация</a></td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
