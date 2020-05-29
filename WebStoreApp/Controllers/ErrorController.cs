@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebStoreApp.Controllers
 {
-    public class _404Controller : Controller
+    public class ErrorController : Controller
     {
         public IActionResult Index()
         {
