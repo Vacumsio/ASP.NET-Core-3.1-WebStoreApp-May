@@ -1,0 +1,13 @@
+﻿@model WebStoreApp.Models.Employee
+
+    <div class="container">
+        <h1>Информация о сотруднике: @Model.Id</h1>
+
+        <p>@Model.Surname</p>
+        <p>@Model.Firstname</p>
+        <p>@Model.Patronymic</p>
+        <p>@Model.Age</p>
+        
+        <hr />
+        <a asp-controller="Employees" asp-action="Index">К списку сотрудников</a>
+    </div>

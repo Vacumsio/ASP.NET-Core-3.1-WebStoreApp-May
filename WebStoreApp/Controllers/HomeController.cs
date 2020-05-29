@@ -9,53 +9,6 @@ namespace WebStoreApp.Controllers
 {
     public class HomeController : Controller
     {
-        private static readonly List<Employee> _Employees = new List<Employee>
-        {
-            new Employee
-            {
-                Id = 1,
-                Firstname = "Arthas",
-                Surname = "Pendragon",
-                Patronymic = "Fallen",
-                Age = 22
-            },
-            new Employee
-            {
-                Id = 2,
-                Firstname = "Jaina",
-                Surname = "Praudmur",
-                Patronymic = "Great",
-                Age = 20
-            },
-            new Employee
-            {
-                Id = 3,
-                Firstname = "Thrall",
-                Surname = "Overseer",
-                Patronymic = "Chieftan",
-                Age = 30
-            },
-            new Employee
-            {
-                Id = 4,
-                Firstname = "Барыга",
-                Surname = "Зона",
-                Patronymic = "Сидорович",
-                Age = 50
-            },
-        };
-        public IActionResult Index()
-        {
-            return View(_Employees);
-        }
-        public IActionResult EmployeeDetails(int id)
-        {
-            var employee = _Employees.FirstOrDefault(e => e.Id == id);
-            if (employee is null)
-            {
-                return NotFound();
-            }
-            return View(employee);
-        }
+        public IActionResult Index() => View();
     }
 }
