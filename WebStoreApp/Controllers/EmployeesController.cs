@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using WebStoreApp.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebStoreApp.Infrastructure.Interfaces;
 
 namespace WebStoreApp.Controllers
 {
     public class EmployeesController : Controller
-    {       
-        public IActionResult Index() => View(_Employees);
+    {
+        private readonly IEmployeeData _EmployeeData;
+        public EmployeesController(IEmployeeData EmployeeData)
+        {
+            _EmployeeData = EmployeeData;
+        }
+        public IActionResult Index() => View(_EmployeeData);
 
         public IActionResult EmployeeDetails(int id)
         {
-            var employee = _Employees.FirstOrDefault(e => e.Id == id);
+            var employee = _EmployeeData.GetById(id);
             if (employee is null)
             {
                 return NotFound();

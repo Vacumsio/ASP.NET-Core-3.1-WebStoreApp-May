@@ -61,9 +61,6 @@ namespace WebStoreApp.Infrastructure.Services
             db_item.Age = Employee.Age;
         }
 
-        public void SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
+        public void SaveChanges() { }
     }
 }
