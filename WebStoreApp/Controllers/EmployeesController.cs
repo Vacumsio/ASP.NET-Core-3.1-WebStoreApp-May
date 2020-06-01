@@ -8,9 +8,7 @@ using WebStoreApp.Models;
 namespace WebStoreApp.Controllers
 {
     public class EmployeesController : Controller
-    {
-        
-
+    {       
         public IActionResult Index() => View(_Employees);
 
         public IActionResult EmployeeDetails(int id)
