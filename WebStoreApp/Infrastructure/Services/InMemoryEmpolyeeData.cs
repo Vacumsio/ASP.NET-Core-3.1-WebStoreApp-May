@@ -44,7 +44,21 @@ namespace WebStoreApp.Infrastructure.Services
 
         public void Edit(Employee Employee)
         {
-            throw new NotImplementedException();
+            if (Employee is null)
+            {
+                throw new ArgumentNullException(nameof(Employee));
+            }
+            if (_Employees.Contains(Employee))
+            {
+                return;
+            }
+
+            var db_item = GetById(Employee.Id);
+
+            db_item.Firstname = Employee.Firstname;
+            db_item.Surname = Employee.Surname;
+            db_item.Patronymic = Employee.Patronymic;
+            db_item.Age = Employee.Age;
         }
 
         public void SaveChanges()
