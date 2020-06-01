@@ -12,7 +12,7 @@ namespace WebStoreApp.Controllers
         {
             _EmployeesData = EmployeeData;
         }
-        public IActionResult Index() => View(_EmployeesData);
+        public IActionResult Index() => View(_EmployeesData.Get());
 
         public IActionResult EmployeeDetails(int id)
         {
