@@ -7,8 +7,8 @@ namespace WebStoreApp.Controllers
 {
     public class EmployeesController : Controller
     {
-        private readonly IEmployeeData _EmployeesData;
-        public EmployeesController(IEmployeeData EmployeeData)
+        private readonly IEmployeesData _EmployeesData;
+        public EmployeesController(IEmployeesData EmployeeData)
         {
             _EmployeesData = EmployeeData;
         }
@@ -23,14 +23,14 @@ namespace WebStoreApp.Controllers
             }
             return View(employee);
         }
-        
+
         public IActionResult Edit(int? Id)
         {
-            if (Id is null) 
-            { 
-                return View(new EmployeeViewModel()); 
+            if (Id is null)
+            {
+                return View(new EmployeeViewModel());
             }
-            if (Id<0)
+            if (Id < 0)
             {
                 return BadRequest();
             }
@@ -48,9 +48,9 @@ namespace WebStoreApp.Controllers
                 Surname = employee.Surname,
                 Patronymic = employee.Patronymic,
                 Age = employee.Age
-            }); 
+            });
         }
-
+        [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
         {
             if (Model is null)
@@ -67,7 +67,7 @@ namespace WebStoreApp.Controllers
                 Age = Model.Age
             };
 
-            if (Model.Id==0)
+            if (Model.Id == 0)
             {
                 _EmployeesData.Add(employee);
             }
@@ -76,6 +76,35 @@ namespace WebStoreApp.Controllers
                 _EmployeesData.Edit(employee);
             }
             _EmployeesData.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int Id)
+        {
+            if (Id<=0)
+            {
+                return BadRequest();
+            }
+            var employee = _EmployeesData.GetById(Id);
+            if (employee is null)
+            {
+                return NotFound();
+            }
+            return View(new EmployeeViewModel
+            {
+                Id = employee.Id,
+                Firstname = employee.Firstname,
+                Surname = employee.Surname,
+                Patronymic = employee.Patronymic,
+                Age = employee.Age
+            });
+        }
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int Id)
+        {
+            _EmployeesData.Delete(Id);
+            _EmployeesData.SaveChanges();
+
             return RedirectToAction("Index");
         }
     }
