@@ -34,7 +34,12 @@ namespace WebStoreApp.Infrastructure.Services
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var db_item = GetById(id);
+            if (db_item is null)
+            {
+                return false;
+            }
+            return _Employees.Remove(db_item);
         }
 
         public void Edit(Employee Employee)
