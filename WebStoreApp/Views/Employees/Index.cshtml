@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div>
+<div class="container">
+    <a asp-action="Edit" class="btn btn-success">Create new</a>
     <table class="table">
         <thead>
             <tr>
@@ -18,12 +19,24 @@
             @foreach(var employee in Model)
             {
             <tr>
+                <td>
+                    <a asp-controller="Employees" asp-action="EmployeeDetails" asp-route-id="@employee.Id">
+                        <i class="fa fa-info-circle"></i>
+                    </a>
+                </td>
                 <td>@employee.Id</td>
                 <td>@employee.Surname</td>
                 <td>@employee.Firstname</td>
                 <td>@employee.Patronymic</td>
                 <td>@employee.Age</td>
-                <td><a asp-controller="Employees" asp-action="EmployeeDetails" asp-route-id="@employee.Id">Информация</a></td>
+                <td>
+                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-success">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-danger">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                </td>
             </tr>
 
             }
