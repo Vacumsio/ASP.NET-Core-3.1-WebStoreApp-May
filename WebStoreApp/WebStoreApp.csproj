@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Shared\Components\Sections\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

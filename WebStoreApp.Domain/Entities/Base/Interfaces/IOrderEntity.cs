@@ -1,6 +1,6 @@
 ﻿namespace WebStoreApp.Domain.Entities.Base.Interfaces
 {
-    interface IOrderEntity: IBaseEntity
+    public interface IOrderEntity: IBaseEntity
     {
         int Order { get; set; }
     }
