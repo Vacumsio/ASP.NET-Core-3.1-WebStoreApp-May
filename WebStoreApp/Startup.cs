@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStoreApp.Infrastructure.Interfaces;
+using WebStoreApp.Infrastructure.Services;
 
 namespace WebStoreApp
 {
@@ -10,6 +12,7 @@ namespace WebStoreApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -19,7 +22,6 @@ namespace WebStoreApp
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
-
 
             app.UseStaticFiles();
             app.UseDefaultFiles();
