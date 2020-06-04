@@ -27,7 +27,7 @@ namespace WebStoreApp.Components
                 {
                     Id = s.Id,
                     Name = s.Name,
-                    Order = s.Order
+                    Order = s.Order,
                 })
                 .ToList();
 
@@ -35,14 +35,14 @@ namespace WebStoreApp.Components
             {
                 var childs = sections.Where(s => s.ParentId == parent_section.Id);
                 foreach (var child_sections in childs)
-                    parent_section.ChildSections.Add(new SectionViewModel 
-                    { 
+                    parent_section.ChildSections.Add(new SectionViewModel
+                    {
                         Id = child_sections.Id,
                         Name = child_sections.Name,
                         Order = child_sections.Order,
                         ParentSection = parent_section
                     });
-                parent_section.ChildSections.Sort((a,b)=>Comparer<double>.Default.Compare(a.Order,b.Order));
+                parent_section.ChildSections.Sort((a, b) => Comparer<double>.Default.Compare(a.Order, b.Order));
             }
 
             parent_sections_views.Sort((a, b) => Comparer<double>.Default.Compare(a.Order, b.Order));
