@@ -25,7 +25,7 @@ namespace WebStoreApp.Controllers
 
             var products = _ProductData.GetProducts(filter);
 
-            return View(new CatalogViewModel
+            return View(new ShopViewModel
             {
                 SectionId = SectionId,
                 BrandId = BrandId,

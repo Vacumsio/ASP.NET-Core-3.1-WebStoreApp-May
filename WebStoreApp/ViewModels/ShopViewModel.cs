@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebStoreApp.Domain.Entities.Base.Interfaces;
+﻿using System.Collections.Generic;
 
 namespace WebStoreApp.ViewModels
 {
-    public class CatalogViewModel
+    public class ShopViewModel
     { 
         public int? BrandId { get; set; }
         public int? SectionId { get; set; }

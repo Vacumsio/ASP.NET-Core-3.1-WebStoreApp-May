@@ -10,7 +10,7 @@ namespace WebStoreApp.Infrastructure.Interfaces
     {
         IEnumerable<Section> GetSections();
         IEnumerable<Brand> GetBrands();
-        IEnumerable<Product> GetProducts(ProductFilter filter = null);
+        IEnumerable<Product> GetProducts(ProductFilter Filter = null);
 
     }
 }
