@@ -9,13 +9,13 @@ using WebStoreApp.ViewModels;
 
 namespace WebStoreApp.Controllers
 {
-    public class ShopController : Controller
+    public class CatalogController : Controller
     {
         private readonly IProductData _ProductData;
 
-        public ShopController(IProductData ProductData) => _ProductData = ProductData;
+        public CatalogController(IProductData ProductData) => _ProductData = ProductData;
 
-        public IActionResult Index(int? SectionId, int? BrandId)
+        public IActionResult Shop(int? SectionId, int? BrandId)
         {
             var filter = new ProductFilter
             {
@@ -25,7 +25,7 @@ namespace WebStoreApp.Controllers
 
             var products = _ProductData.GetProducts(filter);
 
-            return View(new ShopViewModel
+            return View(new CatalogViewModel
             {
                 SectionId = SectionId,
                 BrandId = BrandId,

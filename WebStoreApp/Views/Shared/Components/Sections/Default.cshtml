@@ -21,7 +21,7 @@
                         <ul>
                             @foreach (var child_section in parent_section.ChildSections)
                             {
-                                <li><a asp-controller="Shop" asp-action="Index" asp-route-SectionId="@child_section.Id">@child_section.Name </a></li>
+                                <li><a asp-controller="Catalog" asp-action="Shop" asp-route-SectionId="@child_section.Id">@child_section.Name </a></li>
                             }
                         </ul>
                     </div>
