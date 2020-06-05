@@ -13,6 +13,7 @@ namespace WebStoreApp
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
+            services.AddSingleton<IProductData, InMemoryProductData>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
