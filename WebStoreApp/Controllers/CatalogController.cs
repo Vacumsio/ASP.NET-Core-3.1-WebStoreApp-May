@@ -39,5 +39,7 @@ namespace WebStoreApp.Controllers
                 }).OrderBy(p => p.Order)
             });
         }
+
+        public IActionResult ProductDetails() => View();
     }
 }
