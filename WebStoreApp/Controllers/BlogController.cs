@@ -8,6 +8,8 @@ namespace WebStoreApp.Controllers
 {
     public class BlogController : Controller
     {
-        public IActionResult Index() => View();
+        public IActionResult BlogList() => View();
+
+        public IActionResult BlogSingle() => View();
     }
 }
