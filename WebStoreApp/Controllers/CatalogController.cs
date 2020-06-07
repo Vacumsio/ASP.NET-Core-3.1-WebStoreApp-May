@@ -41,5 +41,11 @@ namespace WebStoreApp.Controllers
         }
 
         public IActionResult ProductDetails() => View();
+
+        public IActionResult CheckOut() => View();
+
+        public IActionResult Cart() => View();
+
+        public IActionResult Login() => View();
     }
 }
