@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebStoreApp.DAL\WebStoreApp.DAL.csproj" />
     <ProjectReference Include="..\WebStoreApp.Domain\WebStoreApp.Domain.csproj" />
   </ItemGroup>
 
