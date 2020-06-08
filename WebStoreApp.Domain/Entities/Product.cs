@@ -5,6 +5,7 @@ using WebStoreApp.Domain.Entities.Base.Interfaces;
 
 namespace WebStoreApp.Domain.Entities
 {
+    [Table("Products")]
     public class Product : NamedEntity, IOrderEntity
     {
         public int Order { get; set; }

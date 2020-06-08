@@ -29,26 +29,27 @@ namespace WebStoreApp.Data
                 db.CommitTransaction();
             }
 
-            using (var transactions = db.BeginTransaction())
+            using (var transaction = db.BeginTransaction())
             {
                 _db.Brands.AddRange(TestData.Brands);
 
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[ProductSection] ON");
+                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[ProductBrand] ON");
                 _db.SaveChanges();
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[ProductSection] OFF");
+                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[ProductBrand] OFF");
 
-                transactions.Commit();
+                transaction.Commit();
             }
 
-            using (var transactions = db.BeginTransaction())
+            using (var transaction = db.BeginTransaction())
             {
                 _db.Products.AddRange(TestData.Products);
 
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[ProductSection] ON");
-                _db.SaveChanges();
-                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[ProductSection] OFF");
 
-                transactions.Commit();
+                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] ON");
+                _db.SaveChanges();
+                db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] OFF");
+
+                transaction.Commit();
             }
         }
     }
