@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStoreApp.DAL.Context;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Infrastructure.Services;
 
@@ -9,8 +12,13 @@ namespace WebStoreApp
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration) => Configuration = configuration;
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
             services.AddSingleton<IProductData, InMemoryProductData>();
