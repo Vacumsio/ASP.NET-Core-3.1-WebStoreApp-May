@@ -2,7 +2,7 @@
 
 namespace WebStoreApp.DAL.Migrations
 {
-    public partial class NewMigration20200608 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

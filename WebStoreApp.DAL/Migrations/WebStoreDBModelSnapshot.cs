@@ -101,7 +101,7 @@ namespace WebStoreApp.DAL.Migrations
             modelBuilder.Entity("WebStoreApp.Domain.Entities.Product", b =>
                 {
                     b.HasOne("WebStoreApp.Domain.Entities.Brand", "Brand")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("BrandId");
 
                     b.HasOne("WebStoreApp.Domain.Entities.Section", "Section")

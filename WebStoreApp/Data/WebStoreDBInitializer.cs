@@ -44,7 +44,6 @@ namespace WebStoreApp.Data
             {
                 _db.Products.AddRange(TestData.Products);
 
-
                 db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] ON");
                 _db.SaveChanges();
                 db.ExecuteSqlRaw("SET IDENTITY_INSERT [dbo].[Products] OFF");

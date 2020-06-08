@@ -10,8 +10,8 @@ using WebStoreApp.DAL.Context;
 namespace WebStoreApp.DAL.Migrations
 {
     [DbContext(typeof(WebStoreDB))]
-    [Migration("20200608103934_Initial")]
-    partial class Initial
+    [Migration("20200608113521_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,7 +103,7 @@ namespace WebStoreApp.DAL.Migrations
             modelBuilder.Entity("WebStoreApp.Domain.Entities.Product", b =>
                 {
                     b.HasOne("WebStoreApp.Domain.Entities.Brand", "Brand")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("BrandId");
 
                     b.HasOne("WebStoreApp.Domain.Entities.Section", "Section")
