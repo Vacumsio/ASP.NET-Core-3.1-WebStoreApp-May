@@ -1,7 +1,12 @@
 ﻿
 <section id="cart_items">
     <div class="container">
-        <partial name="Partial/_BreadCrumbs" />
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
         <partial name="Partial/_TableResponsive" />
     </div>
 </section> <!--/#cart_items-->
@@ -17,7 +22,16 @@
                 <partial name="Partial/_ChoseArea" />
             </div>
             <div class="col-sm-6">
-                <partial name="Partial/_TotalArea" />
+                <div class="total_area">
+                    <ul>
+                        <li>Cart Sub Total <span>$59</span></li>
+                        <li>Eco Tax <span>$2</span></li>
+                        <li>Shipping Cost <span>Free</span></li>
+                        <li>Total <span>$61</span></li>
+                    </ul>
+                    <a class="btn btn-default update" href="">Update</a>
+                    <a class="btn btn-default check_out" href="">Check Out</a>
+                </div>
             </div>
         </div>
     </div>
