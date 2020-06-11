@@ -57,6 +57,7 @@ namespace WebStoreApp
                 opt.SlidingExpiration = true;
             });
 
+            services.AddAuthentication();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             //services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
