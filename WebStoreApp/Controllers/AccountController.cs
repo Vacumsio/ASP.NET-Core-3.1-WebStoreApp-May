@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.ViewModels.Identity;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace WebStoreApp.Controllers
 {
@@ -47,7 +48,35 @@ namespace WebStoreApp.Controllers
             return View(Model);
         }
 
-        public IActionResult Login() => View();
+        public IActionResult Login(string ReturnUrl) => View(new LoginViewModel{ReturnUrl = ReturnUrl });
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel Model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(Model);
+            }
+
+            var login_result = await _SignInManager.PasswordSignInAsync(
+                Model.UserName,
+                Model.Password,
+                Model.RememberMe,
+                true);
+            if (login_result.Succeeded)
+            {
+                if (Url.IsLocalUrl(Model.ReturnUrl))
+                {
+                    return Redirect(Model.ReturnUrl);
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            ModelState.AddModelError(string.Empty, "Неверное имя пользователя или пароль");
+
+            return View(Model);
+        }
+
         public IActionResult Logout() => View();
         public IActionResult AccessDenied() => View();
     }
