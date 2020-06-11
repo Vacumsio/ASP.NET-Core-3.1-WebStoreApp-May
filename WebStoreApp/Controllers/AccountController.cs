@@ -32,7 +32,7 @@ namespace WebStoreApp.Controllers
                 UserName = Model.UserName
             };
 
-            var registration_result = await _UserManager.CreateAsync(user);
+            var registration_result = await _UserManager.CreateAsync(user, Model.Password);
             if (registration_result.Succeeded)
             {
                 await _SignInManager.SignInAsync(user, false);
@@ -62,7 +62,7 @@ namespace WebStoreApp.Controllers
                 Model.UserName,
                 Model.Password,
                 Model.RememberMe,
-                true);
+                false);
             if (login_result.Succeeded)
             {
                 if (Url.IsLocalUrl(Model.ReturnUrl))
@@ -77,7 +77,12 @@ namespace WebStoreApp.Controllers
             return View(Model);
         }
 
-        public IActionResult Logout() => View();
+        public async Task<IActionResult> Logout()
+        {
+            await _SignInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult AccessDenied() => View();
     }
 }
