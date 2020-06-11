@@ -26,6 +26,16 @@ namespace WebStoreApp
             services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SqlProductData>();
+            services.AddScoped<IEmployeesData, SqlEmployeeData>();
+
+            /*Добавить AutoMapper. 
+             -
+            -
+            -
+            -
+            -
+            -
+            -*/
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)

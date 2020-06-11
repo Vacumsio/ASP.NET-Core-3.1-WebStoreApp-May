@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities;
-using WebStoreApp.Models;
+using WebStoreApp.ViewModels;
+using WebStoreApp.Domain.Entities.Employees;
 
 namespace WebStoreApp.Data
 {

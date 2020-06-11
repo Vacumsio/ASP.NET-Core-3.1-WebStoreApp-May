@@ -15,7 +15,15 @@ namespace WebStoreApp.Data
             var db = _db.Database;
             
             db.Migrate();
-
+            if (!_db.Employees.Any())
+            {
+                using (db.BeginTransaction())
+                {
+                    var employees = TestData.Employees.ToList();
+                    employees.ForEach(e => e.Id = 0);
+                    _db.Employees.AddRange(employees);
+                }
+            }
             if (_db.Products.Any()) return;
 
             using (db.BeginTransaction())

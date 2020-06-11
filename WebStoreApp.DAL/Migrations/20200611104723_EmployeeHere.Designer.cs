@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebStoreApp.DAL.Context;
 
 namespace WebStoreApp.DAL.Migrations
 {
     [DbContext(typeof(WebStoreDB))]
-    partial class WebStoreDBModelSnapshot : ModelSnapshot
+    [Migration("20200611104723_EmployeeHere")]
+    partial class EmployeeHere
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

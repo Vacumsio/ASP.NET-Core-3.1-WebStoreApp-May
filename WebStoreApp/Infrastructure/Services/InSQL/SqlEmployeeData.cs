@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebStoreApp.DAL.Context;
 using WebStoreApp.Infrastructure.Interfaces;
-using WebStoreApp.Models;
+using WebStoreApp.Domain.Entities.Employees;
+using System.Linq;
 
 namespace WebStoreApp.Infrastructure.Services.InSQL
 {
@@ -15,32 +14,37 @@ namespace WebStoreApp.Infrastructure.Services.InSQL
         public SqlEmployeeData(WebStoreDB db) => _db = db;
         public int Add(Employee Employee)
         {
-            throw new NotImplementedException();
+            if (Employee is null) throw new ArgumentNullException(nameof(Employee));
+            if (Employee.Id != 0) throw new InvalidOperationException("Для присвоение порядкового номера предусмотрен первичный ключ");
+
+            _db.Employees.Add(Employee);
+
+            return Employee.Id;
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var employee = _db.Employees.FirstOrDefault(e => e.Id == id);
+            if (employee is null) return false;
+
+            _db.Remove(employee);
+            return true;
         }
 
         public void Edit(Employee Employee)
         {
-            throw new NotImplementedException();
+            if (Employee is null)
+            {
+                throw new ArgumentNullException(nameof(Employee));
+
+            }
+            _db.Update(Employee);
         }
 
-        public IEnumerable<Employee> Get()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<Employee> Get() => _db.Employees;
 
-        public Employee GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public Employee GetById(int id) => _db.Employees.FirstOrDefault(e => e.Id == id);
 
-        public void SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
+        public void SaveChanges() => _db.SaveChanges();
     }
 }
