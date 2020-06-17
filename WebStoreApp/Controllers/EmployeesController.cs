@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using WebStoreApp.Infrastructure.Interfaces;
-using WebStoreApp.Models;
+using WebStoreApp.Domain.Entities.Employees;
+using WebStoreApp.ViewModels;
 
 namespace WebStoreApp.Controllers
 {

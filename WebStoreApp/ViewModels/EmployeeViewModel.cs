@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebStoreApp.Models
+namespace WebStoreApp.ViewModels
 {
     public class EmployeeViewModel
     {
@@ -30,7 +27,7 @@ namespace WebStoreApp.Models
 
         [Display(Name = "Возраст")]
         [Required]
-        [Range(18,100, ErrorMessage ="Возраст должен быть неменьше 18 и не больше 100")]
+        [Range(18, 100, ErrorMessage = "Возраст должен быть неменьше 18 и не больше 100")]
         public int Age { get; set; }
     }
 }
