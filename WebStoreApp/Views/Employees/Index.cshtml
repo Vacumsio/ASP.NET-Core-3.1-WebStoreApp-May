@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebStoreApp.Domain.Entities.Employees.Employee>
+﻿@using WebStoreApp.Domain.Entities.Identity;
+@model IEnumerable<WebStoreApp.Domain.Entities.Employees.Employee>
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,33 +13,38 @@
                 <td>Имя</td>
                 <td>Отчество</td>
                 <td>Возраст</td>
-                <td></td>
+                @if (User.IsInRole(Role.Administrator))
+                {
+                    <td></td>
+                }
             </tr>
         </thead>
         <tbody>
-            @foreach(var employee in Model)
+            @foreach (var employee in Model)
             {
-            <tr>
-                <td>
-                    <a asp-controller="Employees" asp-action="EmployeeDetails" asp-route-id="@employee.Id">
-                        <i class="fa fa-info-circle"></i>
-                    </a>
-                </td>
-                <td>@employee.Id</td>
-                <td>@employee.Surname</td>
-                <td>@employee.Firstname</td>
-                <td>@employee.Patronymic</td>
-                <td>@employee.Age</td>
-                <td>
-                    <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-success">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-danger">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
-                </td>
-            </tr>
-
+                <tr>
+                    <td>
+                        <a asp-controller="Employees" asp-action="EmployeeDetails" asp-route-id="@employee.Id">
+                            <i class="fa fa-info-circle"></i>
+                        </a>
+                    </td>
+                    <td>@employee.Id</td>
+                    <td>@employee.Surname</td>
+                    <td>@employee.Firstname</td>
+                    <td>@employee.Patronymic</td>
+                    <td>@employee.Age</td>
+                    @if (User.IsInRole(Role.Administrator))
+                    {
+                    <td>
+                        <a asp-controller="Employees" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-success">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a asp-controller="Employees" asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </td>
+                    }
+                </tr>
             }
         </tbody>
     </table>

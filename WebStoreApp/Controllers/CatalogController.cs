@@ -33,7 +33,11 @@ namespace WebStoreApp.Controllers
             });
         }
 
-        public IActionResult ProductDetails() => View();
+        public IActionResult ProductDetails()
+        {
+            //var product;
+            return View();
+        }
 
         public IActionResult CheckOut() => View();
 

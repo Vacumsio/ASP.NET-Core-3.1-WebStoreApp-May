@@ -32,28 +32,30 @@ namespace WebStoreApp
 
             services.Configure<IdentityOptions>(opt =>
            {
+#if DEBUG
                opt.Password.RequiredLength = 3;
                opt.Password.RequireDigit = false;
                opt.Password.RequireLowercase = false;
                opt.Password.RequireUppercase = false;
-               opt.Password.RequiredUniqueChars = 3;
                opt.Password.RequireNonAlphanumeric = false;
+               opt.Password.RequiredUniqueChars = 3;
 
                opt.User.RequireUniqueEmail = false;
-
+#endif
                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                opt.Lockout.MaxFailedAccessAttempts = 3;
                opt.Lockout.AllowedForNewUsers = true;
            });
 
             services.ConfigureApplicationCookie(opt=> {
-                opt.Cookie.Expiration = TimeSpan.FromDays(14);
-                opt.Cookie.Name = "WebStoreApp.AtAzure.AtLeast";
+                opt.Cookie.Expiration = TimeSpan.FromDays(355);
+                opt.Cookie.Name = "WebStoreApp";
                 opt.Cookie.HttpOnly = true;
+                opt.ExpireTimeSpan = TimeSpan.FromDays(355);
 
-                opt.LoginPath = "";
-                opt.AccessDeniedPath = "";
-                opt.LogoutPath = "";
+                opt.LoginPath = "/Account/Login";
+                opt.AccessDeniedPath = "/Account/Logout";
+                opt.LogoutPath = "/Account/AccessDenied";
                 opt.SlidingExpiration = true;
             });
 

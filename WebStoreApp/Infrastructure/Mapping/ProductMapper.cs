@@ -17,6 +17,7 @@ namespace WebStoreApp.Infrastructure.Mapping
             ImageUrl = p.ImageUrl,
             Order = p.Order,
             Price = p.Price,
+            Brand =p.Brand?.Name,
         };
 
     }
