@@ -81,14 +81,7 @@ namespace WebStoreApp.Controllers
             {
                 return NotFound();
             }
-            return View(new EmployeeViewModel
-            {
-                Id = employee.Id,
-                Firstname = employee.Firstname,
-                Surname = employee.Surname,
-                Patronymic = employee.Patronymic,
-                Age = employee.Age
-            });
+            return View(employee.ToView());
         }
         [HttpPost]
         public IActionResult DeleteConfirmed(int Id)
