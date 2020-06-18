@@ -57,7 +57,7 @@ namespace WebStoreApp
                 opt.SlidingExpiration = true;
             });
 
-            services.AddAuthentication();
+            //services.AddAuthentication();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             //services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
@@ -87,7 +87,11 @@ namespace WebStoreApp
 
             app.UseStaticFiles();
             app.UseDefaultFiles();
+
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
