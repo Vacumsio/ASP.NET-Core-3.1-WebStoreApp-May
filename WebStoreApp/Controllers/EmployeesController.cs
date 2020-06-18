@@ -3,6 +3,7 @@ using System;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Domain.Entities.Employees;
 using WebStoreApp.ViewModels;
+using WebStoreApp.Infrastructure.Mapping;
 
 namespace WebStoreApp.Controllers
 {
@@ -42,14 +43,7 @@ namespace WebStoreApp.Controllers
                 return NotFound();
             }
 
-            return View(new EmployeeViewModel
-            {
-                Id = employee.Id,
-                Firstname = employee.Firstname,
-                Surname = employee.Surname,
-                Patronymic = employee.Patronymic,
-                Age = employee.Age
-            });
+            return View(employee.ToView());
         }
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
@@ -62,14 +56,7 @@ namespace WebStoreApp.Controllers
             {
                 return View(Model);
             }
-            var employee = new Employee
-            {
-                Id = Model.Id,
-                Firstname = Model.Firstname,
-                Surname = Model.Surname,
-                Patronymic = Model.Patronymic,
-                Age = Model.Age
-            };
+            var employee = Model.FromView();
 
             if (Model.Id == 0)
             {

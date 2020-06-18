@@ -1,6 +1,7 @@
-﻿@using WebStoreApp.Infrastructure.Interfaces;
-@inject IProductData ProductData;
-@{ 
+﻿@using WebStoreApp.Infrastructure.Interfaces
+@using WebStoreApp.Infrastructure.Mapping
+@inject IProductData ProductData
+@{
     ViewData["Title"] = "Каталог товаров";
 }
 
@@ -15,7 +16,7 @@
 
             <div class="col-sm-9 padding-right">
 
-                <partial name="Partial/_FeaturesItems" /> model="ProductData.GetProducts().Take(6).Select(p => new ProductViewModel { Id = p.Id, Name = p.Name, Order = p.Order, Price = p.Price, ImageUrl = p.ImageUrl }).OrderBy(p => p.Order)"/>
+                <partial name="Partial/_FeaturesItems" /> model="ProductData.GetProducts().Take(6).ToView().OrderBy(p => p.Order)"/>
 
                 <partial name="Partial/_CategoryTab" />
 

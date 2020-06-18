@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebStoreApp.Domain.Entities;
 using WebStoreApp.Infrastructure.Interfaces;
+using WebStoreApp.Infrastructure.Mapping;
 using WebStoreApp.ViewModels;
 
 namespace WebStoreApp.Controllers
@@ -29,14 +27,9 @@ namespace WebStoreApp.Controllers
             {
                 SectionId = SectionId,
                 BrandId = BrandId,
-                Products = products.Select(p => new ProductViewModel
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Order = p.Order,
-                    Price = p.Price,
-                    ImageUrl = p.ImageUrl
-                }).OrderBy(p => p.Order)
+                Products = products
+                .ToView()
+                .OrderBy(p => p.Order)
             });
         }
 
