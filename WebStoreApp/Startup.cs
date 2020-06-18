@@ -65,7 +65,7 @@ namespace WebStoreApp
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<IEmployeesData, SqlEmployeeData>();
 
-            /*Добавить AutoMapper. 
+            /*Р”РѕР±Р°РІРёС‚СЊ AutoMapper. 
              -
             -
             -
