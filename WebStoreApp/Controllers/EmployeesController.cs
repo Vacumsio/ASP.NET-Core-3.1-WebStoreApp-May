@@ -74,7 +74,7 @@ namespace WebStoreApp.Controllers
             _EmployeesData.SaveChanges();
             return RedirectToAction("Index");
         }
-        [Authorize(Roles = Role.Administrator]
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Delete(int Id)
         {
             if (Id <= 0)
