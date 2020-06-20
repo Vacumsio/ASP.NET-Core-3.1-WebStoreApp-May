@@ -48,7 +48,8 @@ namespace WebStoreApp
                opt.Lockout.AllowedForNewUsers = true;
            });
 
-            services.ConfigureApplicationCookie(opt=> {
+            services.ConfigureApplicationCookie(opt =>
+            {
                 opt.Cookie.Name = "WebStoreApp";
                 opt.Cookie.HttpOnly = true;
                 opt.ExpireTimeSpan = TimeSpan.FromDays(355);
@@ -98,6 +99,10 @@ namespace WebStoreApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
