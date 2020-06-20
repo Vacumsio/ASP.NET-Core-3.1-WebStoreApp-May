@@ -11,6 +11,7 @@ using WebStoreApp.Data;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Infrastructure.Services;
+using WebStoreApp.Infrastructure.Services.InCookies;
 using WebStoreApp.Infrastructure.Services.InSQL;
 
 namespace WebStoreApp
@@ -48,7 +49,6 @@ namespace WebStoreApp
            });
 
             services.ConfigureApplicationCookie(opt=> {
-                opt.Cookie.Expiration = TimeSpan.FromDays(355);
                 opt.Cookie.Name = "WebStoreApp";
                 opt.Cookie.HttpOnly = true;
                 opt.ExpireTimeSpan = TimeSpan.FromDays(355);
@@ -66,6 +66,7 @@ namespace WebStoreApp
             //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<IEmployeesData, SqlEmployeeData>();
+            services.AddScoped<ICartService, CookiesCartService>();
 
             /*Добавить AutoMapper. 
              -

@@ -9,7 +9,7 @@ namespace WebStoreApp.Infrastructure.Mapping
 {
     public static class ProductMapper
     {
-        public static IEnumerable<ProductViewModel> ToView(this IEnumerable<Product> p) => p.Select(ToView);
+        
         public static ProductViewModel ToView(this Product p) => new ProductViewModel
         {
             Id = p.Id,
@@ -19,6 +19,8 @@ namespace WebStoreApp.Infrastructure.Mapping
             Price = p.Price,
             Brand =p.Brand?.Name,
         };
+
+        public static IEnumerable<ProductViewModel> ToView(this IEnumerable<Product> p) => p.Select(ToView);
 
     }
 }

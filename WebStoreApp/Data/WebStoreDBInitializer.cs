@@ -90,9 +90,9 @@ namespace WebStoreApp.Data
                 await _RoleManager.CreateAsync(new Role { Name = Role.User });
             }
 
-            if (await _UserManager.FindByNameAsync(User.UserAdmin)is null)
+            if (await _UserManager.FindByNameAsync(User.Admin)is null)
             {
-                var admin = new User { UserName = User.UserAdmin };
+                var admin = new User { UserName = User.Admin };
                 var create_result = await _UserManager.CreateAsync(admin, User.Password);
                 if (create_result.Succeeded)
                 {

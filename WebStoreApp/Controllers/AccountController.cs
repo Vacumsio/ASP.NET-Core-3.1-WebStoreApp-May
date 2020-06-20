@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.ViewModels.Identity;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace WebStoreApp.Controllers
 {
@@ -20,6 +19,7 @@ namespace WebStoreApp.Controllers
 
 
         public IActionResult Register() => View(new RegisterViewModel());
+
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel Model)
         {
@@ -35,7 +35,7 @@ namespace WebStoreApp.Controllers
             var registration_result = await _UserManager.CreateAsync(user, Model.Password);
             if (registration_result.Succeeded)
             {
-                await _UserManager.AddToRoleAsync(user,Role.User);
+                await _UserManager.AddToRoleAsync(user, Role.User);
                 await _SignInManager.SignInAsync(user, false);
 
                 return RedirectToAction("Index", "Home");
@@ -43,13 +43,13 @@ namespace WebStoreApp.Controllers
 
             foreach (var error in registration_result.Errors)
             {
-                ModelState.AddModelError(string.Empty,error.Description);
+                ModelState.AddModelError(string.Empty, error.Description);
             }
 
             return View(Model);
         }
 
-        public IActionResult Login(string ReturnUrl) => View(new LoginViewModel{ReturnUrl = ReturnUrl });
+        public IActionResult Login(string ReturnUrl) => View(new LoginViewModel { ReturnUrl = ReturnUrl });
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel Model)

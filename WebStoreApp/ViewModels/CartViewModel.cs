@@ -8,6 +8,6 @@ namespace WebStoreApp.ViewModels
     public class CartViewModel
     {
         public IEnumerable<(ProductViewModel Product, int Quantity)> Items { get; set; }
-        public int ItemsCount => Items?.Sum(items => items.Quantity) ?? 0;
+        public int ItemsCount => Items?.Sum(item => item.Quantity) ?? 0;
     }
 }

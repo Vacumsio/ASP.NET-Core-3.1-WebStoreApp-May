@@ -33,10 +33,15 @@ namespace WebStoreApp.Controllers
             });
         }
 
-        public IActionResult ProductDetails()
+        public IActionResult Details(int id)
         {
-            //var product;
-            return View();
+            var product = _ProductData.GetProductById(id);
+            if (product is null)
+            {
+                NotFound();
+            }
+
+            return View(product.ToView());
         }
 
         public IActionResult CheckOut() => View();
