@@ -11,6 +11,7 @@ using WebStoreApp.Data;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Infrastructure.Services;
+using WebStoreApp.Infrastructure.Services.InCookies;
 using WebStoreApp.Infrastructure.Services.InSQL;
 
 namespace WebStoreApp
@@ -32,40 +33,42 @@ namespace WebStoreApp
 
             services.Configure<IdentityOptions>(opt =>
            {
+#if DEBUG
                opt.Password.RequiredLength = 3;
                opt.Password.RequireDigit = false;
                opt.Password.RequireLowercase = false;
                opt.Password.RequireUppercase = false;
-               opt.Password.RequiredUniqueChars = 3;
                opt.Password.RequireNonAlphanumeric = false;
+               opt.Password.RequiredUniqueChars = 3;
 
                opt.User.RequireUniqueEmail = false;
-
+#endif
                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                opt.Lockout.MaxFailedAccessAttempts = 3;
                opt.Lockout.AllowedForNewUsers = true;
            });
 
             services.ConfigureApplicationCookie(opt=> {
-                opt.Cookie.Expiration = TimeSpan.FromDays(14);
-                opt.Cookie.Name = "WebStoreApp.AtAzure.AtLeast";
+                opt.Cookie.Name = "WebStoreApp";
                 opt.Cookie.HttpOnly = true;
+                opt.ExpireTimeSpan = TimeSpan.FromDays(355);
 
-                opt.LoginPath = "";
-                opt.AccessDeniedPath = "";
-                opt.LogoutPath = "";
+                opt.LoginPath = "/Account/Login";
+                opt.AccessDeniedPath = "/Account/Logout";
+                opt.LogoutPath = "/Account/AccessDenied";
                 opt.SlidingExpiration = true;
             });
 
-            services.AddAuthentication();
+            //services.AddAuthentication();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             //services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
             //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<IEmployeesData, SqlEmployeeData>();
+            services.AddScoped<ICartService, CookiesCartService>();
 
-            /*Äîáàâèòü AutoMapper. 
+            /*Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ AutoMapper. 
              -
             -
             -
@@ -87,7 +90,11 @@ namespace WebStoreApp
 
             app.UseStaticFiles();
             app.UseDefaultFiles();
+
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

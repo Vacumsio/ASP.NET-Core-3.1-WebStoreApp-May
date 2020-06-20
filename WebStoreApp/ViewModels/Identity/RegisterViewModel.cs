@@ -19,6 +19,7 @@ namespace WebStoreApp.ViewModels.Identity
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Подтвердите пароль")]
+        [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
     }
 }

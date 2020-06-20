@@ -3,9 +3,13 @@ using System;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Domain.Entities.Employees;
 using WebStoreApp.ViewModels;
+using WebStoreApp.Infrastructure.Mapping;
+using Microsoft.AspNetCore.Authorization;
+using WebStoreApp.Domain.Entities.Identity;
 
 namespace WebStoreApp.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly IEmployeesData _EmployeesData;
@@ -25,6 +29,7 @@ namespace WebStoreApp.Controllers
             return View(employee);
         }
 
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Edit(int? Id)
         {
             if (Id is null)
@@ -42,15 +47,9 @@ namespace WebStoreApp.Controllers
                 return NotFound();
             }
 
-            return View(new EmployeeViewModel
-            {
-                Id = employee.Id,
-                Firstname = employee.Firstname,
-                Surname = employee.Surname,
-                Patronymic = employee.Patronymic,
-                Age = employee.Age
-            });
+            return View(employee.ToView());
         }
+        [Authorize(Roles = Role.Administrator)]
         [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
         {
@@ -62,14 +61,7 @@ namespace WebStoreApp.Controllers
             {
                 return View(Model);
             }
-            var employee = new Employee
-            {
-                Id = Model.Id,
-                Firstname = Model.Firstname,
-                Surname = Model.Surname,
-                Patronymic = Model.Patronymic,
-                Age = Model.Age
-            };
+            var employee = Model.FromView();
 
             if (Model.Id == 0)
             {
@@ -82,10 +74,10 @@ namespace WebStoreApp.Controllers
             _EmployeesData.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult Delete(int Id)
         {
-            if (Id<=0)
+            if (Id <= 0)
             {
                 return BadRequest();
             }
@@ -94,15 +86,9 @@ namespace WebStoreApp.Controllers
             {
                 return NotFound();
             }
-            return View(new EmployeeViewModel
-            {
-                Id = employee.Id,
-                Firstname = employee.Firstname,
-                Surname = employee.Surname,
-                Patronymic = employee.Patronymic,
-                Age = employee.Age
-            });
+            return View(employee.ToView());
         }
+        [Authorize(Roles =Role.Administrator)]
         [HttpPost]
         public IActionResult DeleteConfirmed(int Id)
         {

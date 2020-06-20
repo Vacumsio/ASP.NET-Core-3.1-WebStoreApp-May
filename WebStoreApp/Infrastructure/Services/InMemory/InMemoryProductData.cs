@@ -27,5 +27,7 @@ namespace WebStoreApp.Infrastructure.Services
             }
             return query;
         }
+
+        public Product GetProductById(int id) => TestData.Products.FirstOrDefault(e => e.Id == id);
     }
 }

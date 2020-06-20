@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*
 Animate.css - http://daneden.me/animate
 Licensed under the MIT license
@@ -369,7 +369,7 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 	-webkit-animation-name: flip;
 	-moz-backface-visibility: visible !important;
 	-moz-animation-name: flip;
-	-o-backface-visibility: visible !important;
+	-webkit-backface-visibility: visible !important;
 	-o-animation-name: flip;
 	backface-visibility: visible !important;
 	animation-name: flip;
@@ -456,7 +456,7 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 	-webkit-animation-name: flipInX;
 	-moz-backface-visibility: visible !important;
 	-moz-animation-name: flipInX;
-	-o-backface-visibility: visible !important;
+	-webkit-backface-visibility: visible !important;
 	-o-animation-name: flipInX;
 	backface-visibility: visible !important;
 	animation-name: flipInX;
@@ -511,7 +511,7 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 	-moz-animation-name: flipOutX;
 	-moz-backface-visibility: visible !important;
 	-o-animation-name: flipOutX;
-	-o-backface-visibility: visible !important;
+	-webkit-backface-visibility: visible !important;
 	animation-name: flipOutX;
 	backface-visibility: visible !important;
 }
@@ -597,7 +597,7 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 	-webkit-animation-name: flipInY;
 	-moz-backface-visibility: visible !important;
 	-moz-animation-name: flipInY;
-	-o-backface-visibility: visible !important;
+	-webkit-backface-visibility: visible !important;
 	-o-animation-name: flipInY;
 	backface-visibility: visible !important;
 	animation-name: flipInY;
@@ -648,7 +648,7 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
 	-webkit-animation-name: flipOutY;
 	-moz-backface-visibility: visible !important;
 	-moz-animation-name: flipOutY;
-	-o-backface-visibility: visible !important;
+	-webkit-backface-visibility: visible !important;
 	-o-animation-name: flipOutY;
 	backface-visibility: visible !important;
 	animation-name: flipOutY;
