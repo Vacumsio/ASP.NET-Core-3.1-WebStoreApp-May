@@ -49,9 +49,8 @@ namespace WebStoreApp.Controllers
 
             return View(employee.ToView());
         }
-        
-        [HttpPost]
         [Authorize(Roles = Role.Administrator)]
+        [HttpPost]
         public IActionResult Edit(EmployeeViewModel Model)
         {
             if (Model is null)
@@ -75,7 +74,6 @@ namespace WebStoreApp.Controllers
             _EmployeesData.SaveChanges();
             return RedirectToAction("Index");
         }
-
         [Authorize(Roles = Role.Administrator)]
         public IActionResult Delete(int Id)
         {
@@ -90,9 +88,8 @@ namespace WebStoreApp.Controllers
             }
             return View(employee.ToView());
         }
-        
+        [Authorize(Roles =Role.Administrator)]
         [HttpPost]
-        [Authorize(Roles = Role.Administrator)]
         public IActionResult DeleteConfirmed(int Id)
         {
             _EmployeesData.Delete(Id);

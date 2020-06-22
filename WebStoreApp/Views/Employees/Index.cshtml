@@ -8,15 +8,14 @@
     <table class="table">
         <thead>
             <tr>
-                <th></th>
-                <th>id</th>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
-                <th>Возраст</th>
+                <td>id</td>
+                <td>Фамилия</td>
+                <td>Имя</td>
+                <td>Отчество</td>
+                <td>Возраст</td>
                 @if (User.IsInRole(Role.Administrator))
                 {
-                    <th></th>
+                    <td></td>
                 }
             </tr>
         </thead>

@@ -26,16 +26,7 @@ namespace WebStoreApp.Data
             var db = _db.Database;
             db.Migrate();
 
-            InitializeEmployee();
-            InitializeProducts();
-            InitializeIdentityAsync().Wait();
-        }
-        private void InitializeEmployee()
-        {
-            var db = _db.Database;
-            db.Migrate();
-
-            if (_db.Employees.Any()) return;
+            if (!_db.Employees.Any()) return;
 
             using (db.BeginTransaction())
             {
@@ -47,7 +38,7 @@ namespace WebStoreApp.Data
             }
         }
 
-        private void InitializeProducts()
+        public void InitializeProducts()
         {
             var db = _db.Database;
 
@@ -87,7 +78,7 @@ namespace WebStoreApp.Data
             }
         }
 
-        private async Task InitializeIdentityAsync()
+        public async Task InitializeIdentityAsync()
         {
             if (!await _RoleManager.RoleExistsAsync(Role.Administrator))
             {
@@ -99,9 +90,9 @@ namespace WebStoreApp.Data
                 await _RoleManager.CreateAsync(new Role { Name = Role.User });
             }
 
-            if (await _UserManager.FindByNameAsync(User.Administrator) is null)
+            if (await _UserManager.FindByNameAsync(User.Admin)is null)
             {
-                var admin = new User { UserName = User.Administrator };
+                var admin = new User { UserName = User.Admin };
                 var create_result = await _UserManager.CreateAsync(admin, User.Password);
                 if (create_result.Succeeded)
                 {
