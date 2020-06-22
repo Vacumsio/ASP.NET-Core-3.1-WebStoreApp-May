@@ -24,29 +24,31 @@ namespace WebStoreApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<WebStoreDB>(opt =>
+                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<WebStoreDBInitializer>();
 
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<WebStoreDB>()
-                .AddDefaultTokenProviders();
+               .AddEntityFrameworkStores<WebStoreDB>()
+               .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(opt =>
-           {
+            {
 #if DEBUG
-               opt.Password.RequiredLength = 3;
-               opt.Password.RequireDigit = false;
-               opt.Password.RequireLowercase = false;
-               opt.Password.RequireUppercase = false;
-               opt.Password.RequireNonAlphanumeric = false;
-               opt.Password.RequiredUniqueChars = 3;
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredUniqueChars = 3;
 
-               opt.User.RequireUniqueEmail = false;
+                opt.User.RequireUniqueEmail = false;
 #endif
-               opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-               opt.Lockout.MaxFailedAccessAttempts = 3;
-               opt.Lockout.AllowedForNewUsers = true;
-           });
+
+                opt.Lockout.AllowedForNewUsers = true;
+                opt.Lockout.MaxFailedAccessAttempts = 10;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+            });
 
             services.ConfigureApplicationCookie(opt =>
             {
@@ -57,6 +59,7 @@ namespace WebStoreApp
                 opt.LoginPath = "/Account/Login";
                 opt.AccessDeniedPath = "/Account/Logout";
                 opt.LogoutPath = "/Account/AccessDenied";
+
                 opt.SlidingExpiration = true;
             });
 
