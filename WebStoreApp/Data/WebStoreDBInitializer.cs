@@ -42,8 +42,6 @@ namespace WebStoreApp.Data
                 var employees = TestData.Employees.ToList();
                 employees.ForEach(e => e.Id = 0);
                 _db.Employees.AddRange(employees);
-
-                db.CommitTransaction();
             }
         }
 
