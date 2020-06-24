@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +10,7 @@ using System;
 using WebStoreApp.DAL.Context;
 using WebStoreApp.Data;
 using WebStoreApp.Domain.Entities.Identity;
+using WebStoreApp.Infrastructure.AutoMapperProfiles;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Infrastructure.Services;
 using WebStoreApp.Infrastructure.Services.InCookies;
@@ -31,6 +33,11 @@ namespace WebStoreApp
             services.AddIdentity<User, Role>()
                .AddEntityFrameworkStores<WebStoreDB>()
                .AddDefaultTokenProviders();
+
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<ViewModelsMapping>();
+            }, typeof(Startup));
 
             services.Configure<IdentityOptions>(opt =>
             {
@@ -63,23 +70,11 @@ namespace WebStoreApp
                 opt.SlidingExpiration = true;
             });
 
-            //services.AddAuthentication();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            //services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
-            //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<IEmployeesData, SqlEmployeeData>();
             services.AddScoped<ICartService, CookiesCartService>();
-
-            /*Добавить AutoMapper. 
-             -
-            -
-            -
-            -
-            -
-            -
-            -*/
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)

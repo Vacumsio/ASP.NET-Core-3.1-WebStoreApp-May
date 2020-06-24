@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Newtonsoft.Json;
 using System;
@@ -17,11 +18,13 @@ namespace WebStoreApp.Infrastructure.Services.InCookies
     {
         private readonly IProductData _ProductData;
         private readonly IHttpContextAccessor _IHttpContextAccessor;
+        private readonly IMapper _Mapper;
         private readonly string _CartName;
-        public CookiesCartService(IProductData ProductData, IHttpContextAccessor HttpContextAccessor)
+        public CookiesCartService(IProductData ProductData, IHttpContextAccessor HttpContextAccessor, IMapper Mapper)
         {
             _ProductData = ProductData;
             _IHttpContextAccessor = HttpContextAccessor;
+            _Mapper = Mapper;
 
             var user = HttpContextAccessor.HttpContext.User;
             var user_name = user.Identity.IsAuthenticated ? user.Identity.Name : null;
@@ -106,7 +109,7 @@ namespace WebStoreApp.Infrastructure.Services.InCookies
             var products = _ProductData.GetProducts(new ProductFilter {
             Ids = Cart.Items.Select(item => item.ProductId).ToArray()
             });;
-            var product_viewmodel = products.ToView().ToDictionary(p => p.Id);
+            var product_viewmodel = products.Select(_Mapper.Map<ProductViewModel>).ToDictionary(p => p.Id);
 
             return new CartViewModel {
             Items = Cart.Items.Select(item => (product_viewmodel[item.ProductId],item.Quantity))
