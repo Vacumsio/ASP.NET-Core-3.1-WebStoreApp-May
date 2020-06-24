@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebStoreApp.Domain.Entities;
+using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Infrastructure.Interfaces;
 
 namespace WebStoreApp.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"), Authorize(Roles = Role.Administrator)]
     public class CatalogController : Controller
     {
         private readonly IProductData _ProductData;
@@ -24,10 +26,7 @@ namespace WebStoreApp.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult Edit(Product product)
-        {
-            return RedirectToAction(nameof(Index));
-        }
+        public IActionResult Edit(Product product) => RedirectToAction(nameof(Index));
 
         public IActionResult Delete(int id)
         {

@@ -11,9 +11,6 @@ namespace WebStoreApp.Areas.Admin.Controllers
     [Area("Admin"),Authorize(Roles = Role.Administrator)]
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
     }
 }
