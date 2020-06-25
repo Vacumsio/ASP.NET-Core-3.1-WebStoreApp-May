@@ -11,18 +11,16 @@ namespace WebStoreApp.ViewModels
 
         [Display(Name = "Имя")]
         [Required(ErrorMessage = "Имя обязательно")]
-        [StringLength(30, MinimumLength = 2, ErrorMessage = "Длина имени должна быть от 2 до 30 символов")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Длина имени должна быть от 3 до 30 символов")]
         [RegularExpression(@"([А-ЯЁ][а-яё]+)|([A-Z][a-z]+)", ErrorMessage = "Ошибка формата имени")]
         public string Firstname { get; set; }
 
         [Display(Name = "Фамилия")]
         [Required(ErrorMessage = "Фамилия обязательна")]
-        [StringLength(60, MinimumLength = 3, ErrorMessage = "Длина фамилии должна быть от 3 до 60 символов")]
-        [RegularExpression(@"([А-ЯЁ][а-яё]+)|([A-Z][a-z]+)", ErrorMessage = "Ошибка формата Фамилии")]
+        [StringLength(60, ErrorMessage = "Длина фамилии должна быть от 3 до 60 символов")]
         public string Surname { get; set; }
 
         [Display(Name = "Отчество")]
-        [RegularExpression(@"([А-ЯЁ][а-яё]+)|([A-Z][a-z]+)", ErrorMessage = "Ошибка формата Отчества")]
         public string Patronymic { get; set; }
 
         [Display(Name = "Возраст")]

@@ -6,6 +6,7 @@ using WebStoreApp.ViewModels;
 using WebStoreApp.Infrastructure.Mapping;
 using Microsoft.AspNetCore.Authorization;
 using WebStoreApp.Domain.Entities.Identity;
+using AutoMapper;
 
 namespace WebStoreApp.Controllers
 {
@@ -30,7 +31,7 @@ namespace WebStoreApp.Controllers
         }
 
         [Authorize(Roles = Role.Administrator)]
-        public IActionResult Edit(int? Id)
+        public IActionResult Edit(int? Id, [FromServices] IMapper Mapper)
         {
             if (Id is null)
             {
@@ -47,11 +48,12 @@ namespace WebStoreApp.Controllers
                 return NotFound();
             }
 
-            return View(employee.ToView());
+            return View(Mapper.Map<EmployeeViewModel>(employee));
         }
-        [Authorize(Roles = Role.Administrator)]
+        
         [HttpPost]
-        public IActionResult Edit(EmployeeViewModel Model)
+        [Authorize(Roles = Role.Administrator)]
+        public IActionResult Edit(EmployeeViewModel Model, [FromServices] IMapper Mapper)
         {
             if (Model is null)
             {
@@ -61,7 +63,7 @@ namespace WebStoreApp.Controllers
             {
                 return View(Model);
             }
-            var employee = Model.FromView();
+            var employee = Mapper.Map<Employee>(Model);
 
             if (Model.Id == 0)
             {
@@ -74,8 +76,9 @@ namespace WebStoreApp.Controllers
             _EmployeesData.SaveChanges();
             return RedirectToAction("Index");
         }
+
         [Authorize(Roles = Role.Administrator)]
-        public IActionResult Delete(int Id)
+        public IActionResult Delete(int Id, [FromServices] IMapper Mapper)
         {
             if (Id <= 0)
             {
@@ -86,10 +89,11 @@ namespace WebStoreApp.Controllers
             {
                 return NotFound();
             }
-            return View(employee.ToView());
+            return View(Mapper.Map<EmployeeViewModel>(employee));
         }
-        [Authorize(Roles =Role.Administrator)]
+        
         [HttpPost]
+        [Authorize(Roles = Role.Administrator)]
         public IActionResult DeleteConfirmed(int Id)
         {
             _EmployeesData.Delete(Id);

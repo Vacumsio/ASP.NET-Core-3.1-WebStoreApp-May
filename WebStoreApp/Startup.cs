@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -9,6 +10,7 @@ using System;
 using WebStoreApp.DAL.Context;
 using WebStoreApp.Data;
 using WebStoreApp.Domain.Entities.Identity;
+using WebStoreApp.Infrastructure.AutoMapperProfiles;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Infrastructure.Services;
 using WebStoreApp.Infrastructure.Services.InCookies;
@@ -24,31 +26,39 @@ namespace WebStoreApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<WebStoreDB>(opt =>
+                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<WebStoreDBInitializer>();
 
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<WebStoreDB>()
-                .AddDefaultTokenProviders();
+               .AddEntityFrameworkStores<WebStoreDB>()
+               .AddDefaultTokenProviders();
+
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<ViewModelsMapping>();
+            }, typeof(Startup));
 
             services.Configure<IdentityOptions>(opt =>
-           {
+            {
 #if DEBUG
-               opt.Password.RequiredLength = 3;
-               opt.Password.RequireDigit = false;
-               opt.Password.RequireLowercase = false;
-               opt.Password.RequireUppercase = false;
-               opt.Password.RequireNonAlphanumeric = false;
-               opt.Password.RequiredUniqueChars = 3;
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredUniqueChars = 3;
 
-               opt.User.RequireUniqueEmail = false;
+                opt.User.RequireUniqueEmail = false;
 #endif
-               opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-               opt.Lockout.MaxFailedAccessAttempts = 3;
-               opt.Lockout.AllowedForNewUsers = true;
-           });
 
-            services.ConfigureApplicationCookie(opt=> {
+                opt.Lockout.AllowedForNewUsers = true;
+                opt.Lockout.MaxFailedAccessAttempts = 10;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+            });
+
+            services.ConfigureApplicationCookie(opt =>
+            {
                 opt.Cookie.Name = "WebStoreApp";
                 opt.Cookie.HttpOnly = true;
                 opt.ExpireTimeSpan = TimeSpan.FromDays(355);
@@ -56,26 +66,16 @@ namespace WebStoreApp
                 opt.LoginPath = "/Account/Login";
                 opt.AccessDeniedPath = "/Account/Logout";
                 opt.LogoutPath = "/Account/AccessDenied";
+
                 opt.SlidingExpiration = true;
             });
 
-            //services.AddAuthentication();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            //services.AddSingleton<IEmployeesData, InMemoryEmpolyeeData>();
-            //services.AddSingleton<IProductData, InMemoryProductData>();
             services.AddScoped<IProductData, SqlProductData>();
             services.AddScoped<IEmployeesData, SqlEmployeeData>();
             services.AddScoped<ICartService, CookiesCartService>();
-
-            /*Добавить AutoMapper. 
-             -
-            -
-            -
-            -
-            -
-            -
-            -*/
+            services.AddScoped<IOrderService, SqlOrderService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)
@@ -98,6 +98,10 @@ namespace WebStoreApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"
