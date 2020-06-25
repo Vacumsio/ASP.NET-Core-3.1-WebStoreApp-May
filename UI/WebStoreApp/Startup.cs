@@ -12,7 +12,6 @@ using WebStoreApp.Data;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Infrastructure.AutoMapperProfiles;
 using WebStoreApp.Infrastructure.Interfaces;
-using WebStoreApp.Infrastructure.Services;
 using WebStoreApp.Infrastructure.Services.InCookies;
 using WebStoreApp.Infrastructure.Services.InSQL;
 
