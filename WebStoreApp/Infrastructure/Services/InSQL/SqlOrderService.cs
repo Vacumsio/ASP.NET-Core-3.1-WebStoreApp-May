@@ -22,6 +22,7 @@ namespace WebStoreApp.Infrastructure.Services.InSQL
             _db = db;
             _UserManager = UserManager;
         }
+
         public async Task<Order> CreateOrder(string UserName, CartViewModel Cart, OrderViewModel OrderModel)
         {
             var user = await _UserManager.FindByNameAsync(UserName);
@@ -42,7 +43,7 @@ namespace WebStoreApp.Infrastructure.Services.InSQL
                 Items = new List<OrderItem>()
             };
 
-            foreach (var (product_model,quantity) in Cart.Items)
+            foreach (var (product_model, quantity) in Cart.Items)
             {
                 var product = await _db.Products.FindAsync(product_model.Id);
                 if (product is null)
@@ -56,6 +57,7 @@ namespace WebStoreApp.Infrastructure.Services.InSQL
                     Quantity = quantity,
                     Product = product
                 };
+                order.Items.Add(order_item);
             }
 
             await _db.Orders.AddAsync(order);

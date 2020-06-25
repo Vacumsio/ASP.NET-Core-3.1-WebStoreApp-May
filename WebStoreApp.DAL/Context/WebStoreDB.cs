@@ -7,7 +7,7 @@ using WebStoreApp.Domain.Entities.Orders;
 
 namespace WebStoreApp.DAL.Context
 {
-    public class WebStoreDB: IdentityDbContext<User, Role, string>
+    public class WebStoreDB : IdentityDbContext<User, Role, string>
     {
         public DbSet<Product> Products { get; set; }
 
@@ -20,6 +20,7 @@ namespace WebStoreApp.DAL.Context
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }
-        public WebStoreDB(DbContextOptions<WebStoreDB> Options): base(Options) { }
+
+        public WebStoreDB(DbContextOptions<WebStoreDB> Options) : base(Options) { }
     }
 }
