@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities;
-using WebStoreApp.ViewModels;
+using WebStoreApp.Domain.ViewModels;
 
 namespace WebStoreApp.Infrastructure.Mapping
 {

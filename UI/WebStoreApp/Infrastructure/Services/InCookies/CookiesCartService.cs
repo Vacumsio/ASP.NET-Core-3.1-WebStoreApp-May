@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities;
+using WebStoreApp.Domain.Models;
+using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Infrastructure.Mapping;
-using WebStoreApp.Models;
-using WebStoreApp.ViewModels;
 
 namespace WebStoreApp.Infrastructure.Services.InCookies
 {

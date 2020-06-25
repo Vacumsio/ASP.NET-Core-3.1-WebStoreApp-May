@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Infrastructure.Interfaces;
-using WebStoreApp.ViewModels;
 
 namespace WebStoreApp.Controllers
 {

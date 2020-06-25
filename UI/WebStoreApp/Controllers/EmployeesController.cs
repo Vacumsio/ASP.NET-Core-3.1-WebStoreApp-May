@@ -2,11 +2,11 @@
 using System;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Domain.Entities.Employees;
-using WebStoreApp.ViewModels;
 using WebStoreApp.Infrastructure.Mapping;
 using Microsoft.AspNetCore.Authorization;
 using WebStoreApp.Domain.Entities.Identity;
 using AutoMapper;
+using WebStoreApp.Domain.ViewModels;
 
 namespace WebStoreApp.Controllers
 {

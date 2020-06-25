@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities;
 using WebStoreApp.Domain.Entities.Employees;
-using WebStoreApp.ViewModels;
+using WebStoreApp.Domain.ViewModels;
 
 namespace WebStoreApp.Infrastructure.AutoMapperProfiles
 {

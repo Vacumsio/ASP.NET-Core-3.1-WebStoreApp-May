@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebStoreApp.ViewModels.Identity
+namespace WebStoreApp.Domain.ViewModels.Identity
 {
     public class LoginViewModel
     {
         [Required]
         [MaxLength(256)]
-        [Display(Name ="Имя")]
+        [Display(Name = "Имя")]
         public string UserName { get; set; }
 
         [Required]

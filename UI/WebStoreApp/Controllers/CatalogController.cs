@@ -2,9 +2,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebStoreApp.Domain.Entities;
+using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Infrastructure.Mapping;
-using WebStoreApp.ViewModels;
 
 namespace WebStoreApp.Controllers
 {

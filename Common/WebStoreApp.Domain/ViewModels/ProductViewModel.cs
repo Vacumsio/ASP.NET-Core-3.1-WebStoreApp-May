@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WebStoreApp.Domain.Entities;
-using WebStoreApp.Domain.Entities.Base.Interfaces;
+﻿using WebStoreApp.Domain.Entities.Base.Interfaces;
 
-namespace WebStoreApp.ViewModels
+namespace WebStoreApp.Domain.ViewModels
 {
     public class ProductViewModel : INamedEntity, IOrderEntity
     {

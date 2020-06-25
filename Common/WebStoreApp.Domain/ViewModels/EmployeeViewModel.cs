@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebStoreApp.ViewModels
+namespace WebStoreApp.Domain.ViewModels
 {
     public class EmployeeViewModel
     {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebStoreApp.ViewModels.Identity
+namespace WebStoreApp.Domain.ViewModels.Identity
 {
     public class RegisterViewModel
     {
@@ -14,7 +10,7 @@ namespace WebStoreApp.ViewModels.Identity
         public string UserName { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name="Введите пароль")]
+        [Display(Name = "Введите пароль")]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]

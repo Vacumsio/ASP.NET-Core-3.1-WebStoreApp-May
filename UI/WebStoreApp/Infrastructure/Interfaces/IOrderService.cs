@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities.Orders;
-using WebStoreApp.ViewModels;
+using WebStoreApp.Domain.ViewModels;
 
 namespace WebStoreApp.Infrastructure.Interfaces
 {
