@@ -1,0 +1,31 @@
+﻿@using WebStoreApp.Interfaces.Services
+@*@using WebStoreApp.Services.Mapping*@
+@using AutoMapper
+@inject IProductData ProductData
+@inject IMapper Mapper 
+@{
+    ViewData["Title"] = "Каталог товаров";
+}
+
+<partial name="Partial/_Slider" />
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <partial name="../Shared/Partial/_SideBar" />
+            </div>
+
+            <div class="col-sm-9 padding-right">
+
+                @*<partial name="../Shared/Partial/_FeaturesItems" model="ProductData.GetProducts().Take(6).ToView().OrderBy(p => p.Order)" />*@
+                <partial name="../Shared/Partial/_FeaturesItems" model="ProductData.GetProducts().Take(6).Select(Mapper.Map<WebStoreApp.Domain.ViewModels.ProductViewModel>).OrderBy(p => p.Order)" />
+
+                <partial name="Partial/_CategoryTab" />
+
+                <partial name="Partial/_RecommendedItems" />
+
+            </div>
+        </div>
+    </div>
+</section>
