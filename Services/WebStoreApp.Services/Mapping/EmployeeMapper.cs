@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities.Employees;
 using WebStoreApp.Domain.ViewModels;
 
-namespace WebStoreApp.Infrastructure.Mapping
+namespace WebStoreApp.Services.Mapping
 {
     public static class EmployeeMapper
     {

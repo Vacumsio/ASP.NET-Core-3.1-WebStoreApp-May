@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using WebStoreApp.Data;
 using WebStoreApp.Domain.Entities;
-using WebStoreApp.Infrastructure.Interfaces;
+using WebStoreApp.Interfaces.Services;
+using WebStoreApp.Services.Data;
 
-namespace WebStoreApp.Infrastructure.Services
+namespace WebStoreApp.Services.Products.InMemory
 {
     public class InMemoryProductData : IProductData
     {

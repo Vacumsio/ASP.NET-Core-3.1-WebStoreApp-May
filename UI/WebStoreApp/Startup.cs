@@ -8,12 +8,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using WebStoreApp.DAL.Context;
-using WebStoreApp.Data;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Infrastructure.AutoMapperProfiles;
-using WebStoreApp.Infrastructure.Interfaces;
-using WebStoreApp.Infrastructure.Services.InCookies;
-using WebStoreApp.Infrastructure.Services.InSQL;
+using WebStoreApp.Interfaces.Services;
+using WebStoreApp.Services.Data;
+using WebStoreApp.Services.Products.InCookies;
+using WebStoreApp.Services.Products.InSQL;
 
 namespace WebStoreApp
 {

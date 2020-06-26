@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WebStoreApp.DAL.Context;
 using WebStoreApp.Domain.Entities.Identity;
 
-namespace WebStoreApp.Data
+namespace WebStoreApp.Services.Data
 {
     public class WebStoreDBInitializer
     {
@@ -111,7 +111,7 @@ namespace WebStoreApp.Data
                 else
                 {
                     var errors = create_result.Errors.Select(e => e.Description);
-                    throw new InvalidOperationException($"Ошибка создания пользователя с ролью Администратор{string.Join(",",errors)}");
+                    throw new InvalidOperationException($"Ошибка создания пользователя с ролью Администратор{string.Join(",", errors)}");
                 }
             }
         }

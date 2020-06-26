@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using WebStoreApp.DAL.Context;
 using WebStoreApp.Domain.Entities;
-using WebStoreApp.Infrastructure.Interfaces;
+using WebStoreApp.Interfaces.Services;
 
-namespace WebStoreApp.Infrastructure.Services.InSQL
+namespace WebStoreApp.Services.Products.InSQL
 {
     public class SqlProductData : IProductData
     {
@@ -24,7 +24,7 @@ namespace WebStoreApp.Infrastructure.Services.InSQL
             .Include(p => p.Brand)
             .Include(p => p.Section);
 
-            if (Filter?.Ids !=null)
+            if (Filter?.Ids != null)
             {
                 query = query.Where(product => Filter.Ids.Contains(product.Id));
             }

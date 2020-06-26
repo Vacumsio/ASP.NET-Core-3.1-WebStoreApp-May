@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebStoreApp.Domain.ViewModels;
-using WebStoreApp.Infrastructure.Interfaces;
+using WebStoreApp.Interfaces.Services;
 
 namespace WebStore.Components
 {

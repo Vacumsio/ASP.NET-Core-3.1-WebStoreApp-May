@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using WebStoreApp.DAL.Context;
-using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Domain.Entities.Employees;
 using System.Linq;
+using WebStoreApp.Interfaces.Services;
 
-namespace WebStoreApp.Infrastructure.Services.InSQL
+namespace WebStoreApp.Services.Products.InSQL
 {
     public class SqlEmployeeData : IEmployeesData
     {

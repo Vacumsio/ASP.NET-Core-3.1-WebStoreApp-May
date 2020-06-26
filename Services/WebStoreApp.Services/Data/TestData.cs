@@ -2,7 +2,7 @@
 using WebStoreApp.Domain.Entities;
 using WebStoreApp.Domain.Entities.Employees;
 
-namespace WebStoreApp.Data
+namespace WebStoreApp.Services.Data
 {
     public static class TestData
     {

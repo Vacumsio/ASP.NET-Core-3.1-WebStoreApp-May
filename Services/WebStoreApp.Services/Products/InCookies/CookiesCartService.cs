@@ -1,18 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities;
 using WebStoreApp.Domain.Models;
 using WebStoreApp.Domain.ViewModels;
-using WebStoreApp.Infrastructure.Interfaces;
-using WebStoreApp.Infrastructure.Mapping;
+using WebStoreApp.Interfaces.Services;
 
-namespace WebStoreApp.Infrastructure.Services.InCookies
+namespace WebStoreApp.Services.Products.InCookies
 {
     public class CookiesCartService : ICartService
     {
@@ -60,7 +55,7 @@ namespace WebStoreApp.Infrastructure.Services.InCookies
             var item = cart.Items.FirstOrDefault(e => e.ProductId == id);
             if (item is null)
             {
-                cart.Items.Add(new CartItem{ ProductId = id, Quantity = 1 });
+                cart.Items.Add(new CartItem { ProductId = id, Quantity = 1 });
             }
             else
             {
@@ -106,13 +101,15 @@ namespace WebStoreApp.Infrastructure.Services.InCookies
 
         public CartViewModel TransformFromCart()
         {
-            var products = _ProductData.GetProducts(new ProductFilter {
-            Ids = Cart.Items.Select(item => item.ProductId).ToArray()
-            });;
+            var products = _ProductData.GetProducts(new ProductFilter
+            {
+                Ids = Cart.Items.Select(item => item.ProductId).ToArray()
+            }); ;
             var product_viewmodel = products.Select(_Mapper.Map<ProductViewModel>).ToDictionary(p => p.Id);
 
-            return new CartViewModel {
-            Items = Cart.Items.Select(item => (product_viewmodel[item.ProductId],item.Quantity))
+            return new CartViewModel
+            {
+                Items = Cart.Items.Select(item => (product_viewmodel[item.ProductId], item.Quantity))
             };
         }
     }

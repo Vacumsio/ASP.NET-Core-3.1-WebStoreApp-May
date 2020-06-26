@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStoreApp.Domain.Entities.Employees;
 
-namespace WebStoreApp.Infrastructure.Interfaces
+namespace WebStoreApp.Interfaces.Services
 {
     public interface IEmployeesData
     {

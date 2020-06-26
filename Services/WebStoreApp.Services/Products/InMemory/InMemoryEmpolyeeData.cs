@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebStoreApp.Data;
-using WebStoreApp.Infrastructure.Interfaces;
 using WebStoreApp.Domain.Entities.Employees;
+using WebStoreApp.Interfaces.Services;
+using WebStoreApp.Services.Data;
 
-namespace WebStoreApp.Infrastructure.Services
+namespace WebStoreApp.Services.Products.InMemory
 {
     public class InMemoryEmpolyeeData : IEmployeesData
     {
