@@ -7,10 +7,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using WebStoreApp.Clients.Values;
 using WebStoreApp.DAL.Context;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Infrastructure.AutoMapperProfiles;
 using WebStoreApp.Interfaces.Services;
+using WebStoreApp.Interfaces.TestApi;
 using WebStoreApp.Services.Data;
 using WebStoreApp.Services.Products.InCookies;
 using WebStoreApp.Services.Products.InSQL;
@@ -75,10 +77,7 @@ namespace WebStoreApp
             services.AddScoped<IEmployeesData, SqlEmployeeData>();
             services.AddScoped<ICartService, CookiesCartService>();
             services.AddScoped<IOrderService, SqlOrderService>();
-
-            /*
-             * Перетяжка Архитектуры
-             * */
+            services.AddTransient<IValueService, ValuesClient>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)
