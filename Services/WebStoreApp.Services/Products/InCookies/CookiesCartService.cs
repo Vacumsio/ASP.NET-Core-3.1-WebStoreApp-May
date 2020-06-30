@@ -6,6 +6,7 @@ using WebStoreApp.Domain.Entities;
 using WebStoreApp.Domain.Models;
 using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Interfaces.Services;
+using WebStoreApp.Services.Mapping;
 
 namespace WebStoreApp.Services.Products.InCookies
 {
@@ -105,7 +106,7 @@ namespace WebStoreApp.Services.Products.InCookies
             {
                 Ids = Cart.Items.Select(item => item.ProductId).ToArray()
             }); ;
-            var product_viewmodel = products.Select(_Mapper.Map<ProductViewModel>).ToDictionary(p => p.Id);
+            var product_viewmodel = products.Select(p=>p.FromDTO()).ToView().ToDictionary(p => p.Id);
 
             return new CartViewModel
             {

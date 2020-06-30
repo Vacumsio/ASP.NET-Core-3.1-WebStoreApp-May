@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
+using WebStoreApp.Domain.DTO.Order;
 using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Interfaces.Services;
 
@@ -9,10 +11,10 @@ namespace WebStoreApp.Controllers
     {
         private readonly ICartService _CartService;
         public CartController(ICartService CartService) => _CartService = CartService;
-        public IActionResult Details() => View(new CartOrderViewModel 
-        { 
+        public IActionResult Details() => View(new CartOrderViewModel
+        {
             Cart = _CartService.TransformFromCart(),
-            Order = new OrderViewModel() 
+            Order = new OrderViewModel()
         });
 
         public IActionResult AddToCart(int id)
@@ -50,7 +52,20 @@ namespace WebStoreApp.Controllers
                 });
             }
 
-            var order = await OrderService.CreateOrder(User.Identity.Name, _CartService.TransformFromCart(), Model);
+            var order_model = new CreateOrderModel
+            {
+                Order = Model,
+                Items = _CartService.TransformFromCart().Items
+                    .Select(item => new OrderItemDTO
+                    {
+                        Id = item.Product.Id,
+                        Price = item.Product.Price,
+                        Quantity = item.Quantity
+                    })
+                    .ToList()
+            };
+
+            var order = await OrderService.CreateOrder(User.Identity.Name, order_model);
 
             _CartService.RemoveAll();
 

@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStoreApp.DAL.Context;
+using WebStoreApp.Domain.DTO.Order;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Domain.Entities.Orders;
 using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Interfaces.Services;
+using WebStoreApp.Services.Mapping;
 
 namespace WebStoreApp.Services.Products.InSQL
 {
@@ -23,38 +25,38 @@ namespace WebStoreApp.Services.Products.InSQL
             _UserManager = UserManager;
         }
 
-        public async Task<Order> CreateOrder(string UserName, CartViewModel Cart, OrderViewModel OrderModel)
+        public async Task<OrderDTO> CreateOrder(string UserName, CreateOrderModel OrderModel)
         {
             var user = await _UserManager.FindByNameAsync(UserName);
             if (user is null)
             {
-                throw new InvalidOperationException($"льзователь {UserName} не найден");
+                throw new InvalidOperationException($"Пользователь {UserName} не найден");
             }
 
             await using var transaction = await _db.Database.BeginTransactionAsync();
 
             var order = new Order
             {
-                Name = OrderModel.Name,
-                Phone = OrderModel.Phone,
-                Address = OrderModel.Address,
+                Name = OrderModel.Order.Name,
+                Phone = OrderModel.Order.Phone,
+                Address = OrderModel.Order.Address,
                 User = user,
                 Date = DateTime.Now,
                 Items = new List<OrderItem>()
             };
 
-            foreach (var (product_model, quantity) in Cart.Items)
+            foreach (var item in OrderModel.Items)
             {
-                var product = await _db.Products.FindAsync(product_model.Id);
+                var product = await _db.Products.FindAsync(item.Id);
                 if (product is null)
                 {
-                    throw new InvalidOperationException($"Товар {product_model.Id} не найден");
+                    throw new InvalidOperationException($"Товар {item.Id} не найден");
                 }
                 var order_item = new OrderItem
                 {
                     Order = order,
                     Price = product.Price,
-                    Quantity = quantity,
+                    Quantity = item.Quantity,
                     Product = product
                 };
                 order.Items.Add(order_item);
@@ -64,17 +66,19 @@ namespace WebStoreApp.Services.Products.InSQL
             await _db.SaveChangesAsync();
             await transaction.CommitAsync();
 
-            return order;
+            return order.ToDTO();
         }
 
-        public Task<Order> GetOrderById(int id) => _db.Orders
+        public async Task<OrderDTO> GetOrderById(int id) => (await _db.Orders
             .Include(order => order.Items)
-            .FirstOrDefaultAsync(order => order.Id == id);
+            .FirstOrDefaultAsync(order => order.Id == id))
+            .ToDTO();
 
-        public async Task<IEnumerable<Order>> GetUserOrders(string UserName) => await _db.Orders
+        public async Task<IEnumerable<OrderDTO>> GetUserOrders(string UserName) => (await _db.Orders
             .Include(order => order.User)
             .Include(order => order.Items)
             .Where(order => order.User.UserName == UserName)
-            .ToArrayAsync();
+            .ToArrayAsync())
+            .Select(p=>p.ToDTO());
     }
 }
