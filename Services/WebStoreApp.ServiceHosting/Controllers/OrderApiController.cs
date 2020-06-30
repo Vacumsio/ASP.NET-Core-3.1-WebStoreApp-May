@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WebStoreApp.Domain;
 using WebStoreApp.Domain.DTO.Order;
 using WebStoreApp.Interfaces.Services;
 
 namespace WebStoreApp.ServiceHosting.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(WebApi.Orders)]
     [ApiController]
     public class OrderApiController : ControllerBase, IOrderService
     {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WebStoreApp.Clients.Base;
@@ -14,10 +15,14 @@ namespace WebStoreApp.Clients.Orders
     {
         public OrdersClient(IConfiguration Configuration) : base(Configuration, WebApi.Orders) { }
 
-        public Task<OrderDTO> CreateOrder(string UserName, CreateOrderModel Model) => throw new NotImplementedException();
+        public async Task<OrderDTO> CreateOrder(string UserName, CreateOrderModel Model)
+        {
+            var response = await PostAsync($"{_ServiceAddress}/{UserName}", Model);
+            return await response.Content.ReadAsAsync< OrderDTO>();
+        }
 
-        public Task<OrderDTO> GetOrderById(int id) => throw new NotImplementedException();
+        public async Task<OrderDTO> GetOrderById(int id) => await GetAsync<OrderDTO>($"{_ServiceAddress}/{id}");
 
-        public Task<IEnumerable<OrderDTO>> GetUserOrders(string UserName) => throw new NotImplementedException();
+        public async Task<IEnumerable<OrderDTO>> GetUserOrders(string UserName) => await GetAsync<IEnumerable<OrderDTO>>($"{_ServiceAddress}/user/{UserName}");
     }
 }

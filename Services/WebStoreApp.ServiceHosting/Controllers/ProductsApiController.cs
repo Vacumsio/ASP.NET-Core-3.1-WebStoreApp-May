@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebStoreApp.Domain;
 using WebStoreApp.Domain.DTO;
 using WebStoreApp.Domain.Entities;
 using WebStoreApp.Interfaces.Services;
 
 namespace WebStoreApp.ServiceHosting.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(WebApi.Products)]
     [ApiController]
     public class ProductsApiController : ControllerBase, IProductData
     {

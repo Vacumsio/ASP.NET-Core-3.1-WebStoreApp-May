@@ -53,6 +53,7 @@ namespace WebStoreApp
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequiredUniqueChars = 3;
 
+                //opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCD1234567890";
                 opt.User.RequireUniqueEmail = false;
 #endif
 
@@ -79,7 +80,7 @@ namespace WebStoreApp
             //services.AddScoped<IProductData, SqlProductData>();
             //services.AddScoped<IEmployeesData, SqlEmployeeData>();
             services.AddScoped<ICartService, CookiesCartService>();
-            services.AddScoped<IOrderService, SqlOrderService>();
+            //services.AddScoped<IOrderService, SqlOrderService>();
 
             services.AddScoped<IOrderService, OrdersClient>();
             services.AddScoped<IProductData, ProductsClient>();

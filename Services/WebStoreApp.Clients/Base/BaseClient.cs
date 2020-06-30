@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -29,10 +27,10 @@ namespace WebStoreApp.Clients.Base
         }
 
         public T Get<T>(string url) => GetAsync<T>(url).Result;
-        public async Task<T> GetAsync<T>(string url, CancellationToken cancel = default)
+        public async Task<T> GetAsync<T>(string url, CancellationToken Cancel = default)
         {
-            var response = await _Client.GetAsync(url, cancel);
-            return await response.EnsureSuccessStatusCode().Content.ReadAsAsync<T>(cancel);
+            var responsee = await _Client.GetAsync(url, Cancel);
+            return await responsee.EnsureSuccessStatusCode().Content.ReadAsAsync<T>(Cancel);
         }
 
         public HttpResponseMessage Post<T>(string url, T item) => PostAsync(url, item).Result;
