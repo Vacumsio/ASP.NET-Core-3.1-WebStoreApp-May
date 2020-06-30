@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using WebStoreApp.Clients.Employees;
+using WebStoreApp.Clients.Orders;
 using WebStoreApp.Clients.Products;
 using WebStoreApp.Clients.Values;
 using WebStoreApp.DAL.Context;
@@ -80,6 +81,7 @@ namespace WebStoreApp
             services.AddScoped<ICartService, CookiesCartService>();
             services.AddScoped<IOrderService, SqlOrderService>();
 
+            services.AddScoped<IOrderService, OrdersClient>();
             services.AddScoped<IProductData, ProductsClient>();
             services.AddScoped<IEmployeesData, EmployeesClient>();
 
