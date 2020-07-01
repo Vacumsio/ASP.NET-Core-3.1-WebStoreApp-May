@@ -34,22 +34,22 @@ namespace WebStoreApp.Clients.Base
         }
 
         public HttpResponseMessage Post<T>(string url, T item) => PostAsync(url, item).Result;
-        public async Task<HttpResponseMessage> PostAsync<T>(string url, T item, CancellationToken cancel = default)
+        public async Task<HttpResponseMessage> PostAsync<T>(string url, T item, CancellationToken Cancel = default)
         {
-            var response = await _Client.PostAsJsonAsync(url, item, cancel);
+            var response = await _Client.PostAsJsonAsync(url, item, Cancel);
             return response.EnsureSuccessStatusCode();
         }
 
         public HttpResponseMessage Put<T>(string url, T item) => PutAsync(url, item).Result;
-        public async Task<HttpResponseMessage> PutAsync<T>(string url, T item, CancellationToken cancel = default)
+        public async Task<HttpResponseMessage> PutAsync<T>(string url, T item, CancellationToken Cancel = default)
         {
-            var response = await _Client.PutAsJsonAsync(url, item, cancel);
+            var response = await _Client.PutAsJsonAsync(url, item, Cancel);
             return response.EnsureSuccessStatusCode();
         }
 
         public HttpResponseMessage Delete(string url) => DeleteAsync(url).Result;
-        public async Task<HttpResponseMessage> DeleteAsync(string url, CancellationToken cancel = default) => await _Client.DeleteAsync(url, cancel);
-
+        public async Task<HttpResponseMessage> DeleteAsync(string url, CancellationToken Cancel = default) =>
+            await _Client.DeleteAsync(url, Cancel);
 
         #region IDisposable
 

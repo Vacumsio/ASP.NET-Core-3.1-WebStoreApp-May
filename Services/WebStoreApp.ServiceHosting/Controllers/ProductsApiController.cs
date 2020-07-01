@@ -17,13 +17,20 @@ namespace WebStoreApp.ServiceHosting.Controllers
     {
         private readonly IProductData _ProductData;
         public ProductsApiController(IProductData ProductData) => _ProductData = ProductData;
+
         [HttpGet("brands")]
         public IEnumerable<Brand> GetBrands() => _ProductData.GetBrands();
-        [HttpGet("id")]
+
+        [HttpGet("{id}")]
         public ProductDTO GetProductById(int id) => _ProductData.GetProductById(id);
 
+        [HttpPost]
         public IEnumerable<ProductDTO> GetProducts([FromBody] ProductFilter Filter = null) => _ProductData.GetProducts(Filter);
+
         [HttpGet("sections")]
         public IEnumerable<Section> GetSections() => _ProductData.GetSections();
     }
+
+
+
 }
