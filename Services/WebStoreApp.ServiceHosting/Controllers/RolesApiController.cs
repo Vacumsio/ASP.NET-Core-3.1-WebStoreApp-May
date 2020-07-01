@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebStoreApp.DAL.Context;
+using WebStoreApp.Domain;
 using WebStoreApp.Domain.Entities.Identity;
 
 namespace WebStoreApp.ServiceHosting.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(WebApiIdentity.Roles)]
     [ApiController]
     public class RolesApiController : ControllerBase
     {

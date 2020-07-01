@@ -9,10 +9,11 @@ using WebStoreApp.DAL.Context;
 using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Domain.DTO.Identity;
 using System.Security.Claims;
+using WebStoreApp.Domain;
 
 namespace WebStoreApp.ServiceHosting.Controllers
 {
-    [Route("api/[controller]")]
+    [Route(WebApiIdentity.Users)]
     [ApiController]
     public class UsersApiController : ControllerBase
     {
