@@ -49,5 +49,28 @@ namespace WebStoreApp.Clients.Base
 
         public HttpResponseMessage Delete(string url) => DeleteAsync(url).Result;
         public async Task<HttpResponseMessage> DeleteAsync(string url, CancellationToken cancel = default) => await _Client.DeleteAsync(url, cancel);
+
+
+        #region IDisposable
+
+        public void Dispose() 
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        //~BaseClient() => Dispose(false);
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // финализация управляемых ресурсов (вызываем Dispose у всего у чего сможем)
+                _Client.Dispose();
+            }
+
+            // финализация неуправляемых ресурсов (на пример неуправляемой памяти)
+        }
+
+        #endregion
     }
 }
