@@ -354,3 +354,5 @@ healthchecksdb
 /Common/WebStore.Domain/WebStore.Domain.xml
 /Services/WebStoreApp.ServiceHosting/WebStoreApp.ServiceHosting.xml
 /Common/WebStoreApp.Domain/WebStoreApp.Domain.xml
+/WebStoreApp/wwwroot/css
+/WebStoreApp/wwwroot/js
