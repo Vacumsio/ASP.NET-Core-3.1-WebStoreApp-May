@@ -33,7 +33,6 @@ namespace WebStoreApp.Services.Data
         private void InitializeEmployee()
         {
             var db = _db.Database;
-            db.Migrate();
 
             if (_db.Employees.Any()) return;
 
