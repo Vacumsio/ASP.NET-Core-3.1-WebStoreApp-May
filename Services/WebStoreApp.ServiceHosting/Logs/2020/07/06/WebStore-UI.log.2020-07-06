@@ -1,0 +1,8 @@
+2020-07-06 16:42:50,713 [1] ?     - Подготовка к выполнению миграции БД
+2020-07-06 16:42:50,808 [1] ?     - Failed executing DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+CREATE TABLE [ProductBrand] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(max) NOT NULL,
+    [Order] int NOT NULL,
+    CONSTRAINT [PK_ProductBrand] PRIMARY KEY ([Id])
+);

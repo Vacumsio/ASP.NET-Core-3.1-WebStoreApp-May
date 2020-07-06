@@ -17,6 +17,7 @@ using WebStoreApp.Interfaces.Services;
 using WebStoreApp.Interfaces.TestApi;
 using WebStoreApp.Services.Products.InCookies;
 using Microsoft.Extensions.Logging;
+using WebStoreApp.Logger;
 
 namespace WebStoreApp
 {
@@ -92,7 +93,8 @@ namespace WebStoreApp
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory log)
         {
-            
+            log.AddLog4Net();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

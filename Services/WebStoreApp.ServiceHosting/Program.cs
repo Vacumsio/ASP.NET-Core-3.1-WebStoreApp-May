@@ -12,16 +12,16 @@ namespace WebStoreApp.ServiceHosting
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging((host, log) => log
-                   .AddConfiguration(host.Configuration)
-                   .ClearProviders()
-                   .AddConsole())
+                //.ConfigureLogging((host, log) => log
+                //   .AddConfiguration(host.Configuration)
+                //   .ClearProviders()
+                //   .AddConsole())
                 .ConfigureLogging((host, log) =>
                 {
                     log.ClearProviders();
                     //log.AddProvider(new ConsoleLoggerProvider())
                     log.AddConsole(opt => opt.IncludeScopes = true);
-                    log.AddEventLog(opt => opt.LogName = "WebStore.log");
+                    log.AddEventLog(opt => opt.LogName = "WebStoreApp.log");
                     log.AddFilter((str, level) =>
                     {
                         if (str.Contains("test", StringComparison.OrdinalIgnoreCase))
