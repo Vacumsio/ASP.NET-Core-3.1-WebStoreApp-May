@@ -29,9 +29,9 @@ namespace WebStoreApp.Services.Data
             var db = _db.Database;
             if (db.GetPendingMigrations().Any())
             {
-                _Logger.LogInformation("Подготовка к выполнению миграции БД");
+                //_Logger.LogInformation("Подготовка к выполнению миграции БД");
                 db.Migrate();
-                _Logger.LogInformation("Миграция БД выполнена успешно");
+                //_Logger.LogInformation("Миграция БД выполнена успешно");
             }
 
             InitializeEmployee();

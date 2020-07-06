@@ -11,28 +11,23 @@ namespace WebStoreApp.Services.Products.InSQL
     public class SqlEmployeeData : IEmployeesData
     {
         private readonly WebStoreDB _db;
-        private readonly ILogger<SqlEmployeeData> _Logger;
 
-        public SqlEmployeeData(WebStoreDB db, ILogger<SqlEmployeeData> Logger)
+        public SqlEmployeeData(WebStoreDB db)
         {
             _db = db;
-            _Logger = Logger;
         }
 
         public int Add(Employee Employee)
         {
             if (Employee is null)
             {
-                _Logger.LogDebug("Employee пустое {0}", Employee.Id);
                 throw new ArgumentNullException(nameof(Employee));
             }
 
             if (Employee.Id != 0)
             {
-                _Logger.LogDebug("Employee.Id не равно нулю {0}", Employee.Id);
                 throw new InvalidOperationException("Для присвоение порядкового номера предусмотрен первичный ключ");
             }
-            _Logger.LogInformation("Добавление сотрудника : {0} {1} {2} {3}", Employee.Id, Employee.Firstname, Employee.Surname, Employee.Patronymic);
             _db.Employees.Add(Employee);
 
             return Employee.Id;
@@ -43,11 +38,9 @@ namespace WebStoreApp.Services.Products.InSQL
             var employee = _db.Employees.FirstOrDefault(e => e.Id == id);
             if (employee is null)
             {
-                _Logger.LogDebug("Employee.Id пустое {0}", id);
                 return false;
             }
 
-            _Logger.LogInformation("Удаление сотрудника : {0}", id);
             _db.Remove(employee);
             return true;
         }
@@ -56,11 +49,9 @@ namespace WebStoreApp.Services.Products.InSQL
         {
             if (Employee is null)
             {
-                _Logger.LogDebug("Employee пустое {0}", Employee.Id);
                 throw new ArgumentNullException(nameof(Employee));
             }
 
-            _Logger.LogInformation("Обновление инфомрации о сотруднике :{0}{1}{2}{3}", Employee.Id, Employee.Firstname, Employee.Surname, Employee.Patronymic);
             _db.Update(Employee);
         }
 
