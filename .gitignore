@@ -350,3 +350,9 @@ healthchecksdb
 /UI/WebStoreApp/wwwroot/js/site.js
 /UI/WebStoreApp/wwwroot/css/site.min.css
 /UI/WebStoreApp/wwwroot/css/site.css
+/Services/WebStore.ServiceHosting/WebStore.ServiceHosting.xml
+/Common/WebStore.Domain/WebStore.Domain.xml
+/Services/WebStoreApp.ServiceHosting/WebStoreApp.ServiceHosting.xml
+/Common/WebStoreApp.Domain/WebStoreApp.Domain.xml
+/WebStoreApp/wwwroot/css
+/WebStoreApp/wwwroot/js

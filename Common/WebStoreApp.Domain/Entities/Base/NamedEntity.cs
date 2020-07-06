@@ -3,7 +3,7 @@ using WebStoreApp.Domain.Entities.Base.Interfaces;
 
 namespace WebStoreApp.Domain.Entities.Base
 {
-    public class NamedEntity: BaseEntity, IBaseEntity
+    public abstract class NamedEntity: BaseEntity, IBaseEntity
     {
         [Required]
         public string Name { get; set; }

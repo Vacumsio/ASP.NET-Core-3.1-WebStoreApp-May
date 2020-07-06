@@ -7,6 +7,7 @@ using WebStoreApp.Services.Data;
 
 namespace WebStoreApp.Services.Products.InMemory
 {
+    [Obsolete("Руки прочь от Барбары, пользуйся БД", error:true)]
     public class InMemoryEmpolyeeData : IEmployeesData
     {
         private readonly List<Employee> _Employees = TestData.Employees;

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebStoreApp.Domain.Entities;
 using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Interfaces.Services;
+using WebStoreApp.Services.Mapping;
 
 namespace WebStoreApp.Controllers
 {
@@ -28,12 +29,13 @@ namespace WebStoreApp.Controllers
                 SectionId = SectionId,
                 BrandId = BrandId,
                 Products = products
+                .Select(p=>p.FromDTO())
                 .Select(Mapper.Map<ProductViewModel>)
                 .OrderBy(p => p.Order)
             });
         }
 
-        public IActionResult Details(int id, [FromServices] IMapper Mapper)
+        public IActionResult Details(int id)
         {
             var product = _ProductData.GetProductById(id);
             if (product is null)
@@ -41,7 +43,7 @@ namespace WebStoreApp.Controllers
                 NotFound();
             }
 
-            return View(Mapper.Map<ProductViewModel>(product));
+            return View((product.FromDTO().ToView()));
         }
 
         public IActionResult CheckOut() => View();

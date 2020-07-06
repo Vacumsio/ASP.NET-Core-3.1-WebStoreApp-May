@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Не удалось найти файл метаданных "E:\GIT_projects\WebStoreApp\Services\WebStoreApp.Services\bin\Debug\netstandard2.1\WebStoreApp.Services.dll".
+dotnet_diagnostic.CS0006.severity = warning
