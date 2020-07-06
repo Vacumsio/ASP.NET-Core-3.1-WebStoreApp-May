@@ -18,6 +18,7 @@ using WebStoreApp.Domain.Entities.Identity;
 using WebStoreApp.Interfaces.Services;
 using WebStoreApp.Services.Data;
 using WebStoreApp.Services.Products.InSQL;
+using WebStoreApp.Logger;
 
 namespace WebStoreApp.ServiceHosting
 {
@@ -98,8 +99,10 @@ namespace WebStoreApp.ServiceHosting
         /// <param name="app"></param>
         /// <param name="env"></param>
         /// <param name="db"></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db, ILoggerFactory log)
         {
+            log.AddLog4Net();
+
             db.Initialize();
 
             if (env.IsDevelopment())

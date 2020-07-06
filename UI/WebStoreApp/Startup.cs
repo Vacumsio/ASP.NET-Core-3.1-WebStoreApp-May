@@ -16,6 +16,7 @@ using WebStoreApp.Infrastructure.AutoMapperProfiles;
 using WebStoreApp.Interfaces.Services;
 using WebStoreApp.Interfaces.TestApi;
 using WebStoreApp.Services.Products.InCookies;
+using Microsoft.Extensions.Logging;
 
 namespace WebStoreApp
 {
@@ -89,8 +90,9 @@ namespace WebStoreApp
             services.AddTransient<IValueService, ValuesClient>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory log)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

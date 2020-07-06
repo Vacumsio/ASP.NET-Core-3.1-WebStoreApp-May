@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebStoreApp.Domain.ViewModels;
 using WebStoreApp.Interfaces.Services;
 
-namespace WebStore.Components
+namespace WebStoreApp.Components
 {
     public class BrandsViewComponent : ViewComponent
     {
