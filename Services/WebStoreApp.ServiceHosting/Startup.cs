@@ -22,22 +22,22 @@ using WebStoreApp.Services.Products.InSQL;
 namespace WebStoreApp.ServiceHosting
 {
     /// <summary>
-    /// Конфигурирование данных и сервисов
+    /// РљРѕРЅС„РёРіСѓСЂРёСЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… Рё СЃРµСЂРІРёСЃРѕРІ
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// Конструктор класса
+        /// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєР»Р°СЃСЃР°
         /// </summary>
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration) => Configuration = configuration;
         /// <summary>
-        /// Поле для инициализации данных полученных в консрукторе класса
+        /// РџРѕР»Рµ РґР»СЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РґР°РЅРЅС‹С… РїРѕР»СѓС‡РµРЅРЅС‹С… РІ РєРѕРЅСЃСЂСѓРєС‚РѕСЂРµ РєР»Р°СЃСЃР°
         /// </summary>
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// Конфигурация приложения
+        /// РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ РїСЂРёР»РѕР¶РµРЅРёСЏ
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -93,7 +93,7 @@ namespace WebStoreApp.ServiceHosting
             .AddScoped<IOrderService, SqlOrderService>();
         }
         /// <summary>
-        /// Конфигурация приложения
+        /// РљРѕРЅС„РёРіСѓСЂР°С†РёСЏ РїСЂРёР»РѕР¶РµРЅРёСЏ
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
