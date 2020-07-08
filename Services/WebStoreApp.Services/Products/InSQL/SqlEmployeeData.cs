@@ -4,14 +4,20 @@ using WebStoreApp.DAL.Context;
 using WebStoreApp.Domain.Entities.Employees;
 using System.Linq;
 using WebStoreApp.Interfaces.Services;
+using Microsoft.Extensions.Logging;
 
 namespace WebStoreApp.Services.Products.InSQL
 {
     public class SqlEmployeeData : IEmployeesData
     {
-        public readonly WebStoreDB _db;
+        private readonly WebStoreDB _db;
+        private readonly ILogger<SqlEmployeeData> _Logger;
 
-        public SqlEmployeeData(WebStoreDB db) => _db = db;
+        public SqlEmployeeData(WebStoreDB db, ILogger<SqlEmployeeData> Logger)
+        {
+            _db = db;
+            _Logger = Logger;
+        }
         public int Add(Employee Employee)
         {
             if (Employee is null) throw new ArgumentNullException(nameof(Employee));
