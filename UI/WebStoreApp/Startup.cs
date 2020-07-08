@@ -18,6 +18,7 @@ using WebStoreApp.Interfaces.TestApi;
 using WebStoreApp.Services.Products.InCookies;
 using WebStoreApp.Logger;
 using Microsoft.Extensions.Logging;
+using WebStoreApp.Infrastructure.Middleware;
 
 namespace WebStoreApp
 {
@@ -101,6 +102,7 @@ namespace WebStoreApp
                 app.UseBrowserLink();
             }
 
+            app.UseMiddleware<ErrorHandlingWiddleware>();
             app.UseStaticFiles();
             app.UseDefaultFiles();
 
