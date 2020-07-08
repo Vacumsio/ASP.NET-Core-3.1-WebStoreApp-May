@@ -356,3 +356,5 @@ healthchecksdb
 /Common/WebStoreApp.Domain/WebStoreApp.Domain.xml
 /WebStoreApp/wwwroot/css
 /WebStoreApp/wwwroot/js
+/Services/WebStoreApp.ServiceHosting/Logs/2020/07/08
+/UI/WebStoreApp/Logs/2020/07/08
