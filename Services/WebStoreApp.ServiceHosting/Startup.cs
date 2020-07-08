@@ -98,7 +98,7 @@ namespace WebStoreApp.ServiceHosting
         /// <param name="app"></param>
         /// <param name="env"></param>
         /// <param name="db"></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDBInitializer db, ILoggerFactory log)
         {
             db.Initialize();
 

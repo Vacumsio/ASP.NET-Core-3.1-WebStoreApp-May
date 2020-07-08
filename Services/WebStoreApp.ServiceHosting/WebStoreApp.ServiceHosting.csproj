@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\WebStoreApp.Domain\WebStoreApp.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\WebStoreApp.Logger\WebStoreApp.Logger.csproj" />
     <ProjectReference Include="..\WebStoreApp.DAL\WebStoreApp.DAL.csproj" />
     <ProjectReference Include="..\WebStoreApp.Interfaces\WebStoreApp.Interfaces.csproj" />
     <ProjectReference Include="..\WebStoreApp.Services\WebStoreApp.Services.csproj" />

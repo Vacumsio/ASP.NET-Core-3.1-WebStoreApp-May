@@ -14,12 +14,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreApp.DAL", "Services\WebStoreApp.DAL\WebStoreApp.DAL.csproj", "{51834E12-6C5A-4B2B-9B3E-62916409C334}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreApp", "UI\WebStoreApp\WebStoreApp.csproj", "{83CAD88D-2A11-4427-BC83-A41FAAE10914}"
+	ProjectSection(ProjectDependencies) = postProject
+		{344D584D-8CAE-405B-833A-E77E3003EE1B} = {344D584D-8CAE-405B-833A-E77E3003EE1B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreApp.Interfaces", "Services\WebStoreApp.Interfaces\WebStoreApp.Interfaces.csproj", "{AA936B67-46FE-4B6B-B815-C49303445B14}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreApp.Services", "Services\WebStoreApp.Services\WebStoreApp.Services.csproj", "{3A92B584-3AD2-4450-BBCB-4574EDF5C804}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreApp.ServiceHosting", "Services\WebStoreApp.ServiceHosting\WebStoreApp.ServiceHosting.csproj", "{E998839E-31BB-484D-897F-F3FC38A70305}"
+	ProjectSection(ProjectDependencies) = postProject
+		{344D584D-8CAE-405B-833A-E77E3003EE1B} = {344D584D-8CAE-405B-833A-E77E3003EE1B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStoreApp.Clients", "Services\WebStoreApp.Clients\WebStoreApp.Clients.csproj", "{907E8835-65CF-4ED8-9332-44962D218A76}"
 EndProject
