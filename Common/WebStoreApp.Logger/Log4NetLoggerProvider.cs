@@ -2,7 +2,7 @@
 using System.Xml;
 using Microsoft.Extensions.Logging;
 
-namespace WebStore.Logger
+namespace WebStoreApp.Logger
 {
     public class Log4NetLoggerProvider : ILoggerProvider
     {

@@ -4,7 +4,7 @@ using System.Xml;
 using log4net;
 using Microsoft.Extensions.Logging;
 
-namespace WebStore.Logger
+namespace WebStoreApp.Logger
 {
     public class Log4NetLogger : ILogger
     {

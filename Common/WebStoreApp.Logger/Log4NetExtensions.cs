@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 
-namespace WebStore.Logger
+namespace WebStoreApp.Logger
 {
     public static class Log4NetExtensions
     {
