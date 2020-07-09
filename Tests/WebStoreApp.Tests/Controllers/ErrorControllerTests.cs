@@ -16,5 +16,20 @@ namespace WebStoreApp.Tests.Controllers
             var result = controller.Index();
             Assert.IsType<ViewResult>(result);
         }
+
+        [TestMethod]
+        public void StatusError_404_RedirectTo_Error404()
+        {
+            var controller = new ErrorController();
+            const string status_code = "404";
+
+            var result = controller.ErrorStatus(status_code);
+
+            var redirect_to_action = Assert.IsType<RedirectToActionResult>(result);
+
+            Assert.Null(redirect_to_action.ControllerName);
+            Assert.Equal(nameof(ErrorController.Index), redirect_to_action.ActionName);
+
+        }
     }
 }
