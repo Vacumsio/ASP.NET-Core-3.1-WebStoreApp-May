@@ -3,7 +3,7 @@
     <li class="dropdown">
         <a asp-controller="Catalog" asp-action="Shop">Магазин<i class="fa fa-angle-down"></i></a>
         <ul role="menu" class="sub-menu">
-            <li><a asp-controller="Catalog" asp-action="Shop">Товары</a></li>
+            <li><a is-active-route asp-controller="Catalog" asp-action="Shop">Товары</a></li>
             <li><a asp-controller="Catalog" asp-action="CheckOut">Покупки</a></li>
             <li><a asp-controller="Catalog" asp-action="Cart">Корзина</a></li>
             <li><a asp-controller="Catalog" asp-action="Login">Войти</a></li>
