@@ -50,7 +50,7 @@ namespace WebStoreApp.TagHelpers
 
             const StringComparison ignore_case = StringComparison.OrdinalIgnoreCase;
 
-            if (!string.IsNullOrEmpty(Controller) && string.Equals(current_controller, Controller, ignore_case))
+            if (!string.IsNullOrEmpty(Controller) && !string.Equals(current_controller, Controller, ignore_case))
                 return false;
             if (!IgnoreAction && !string.IsNullOrEmpty(Action) && string.Equals(current_action, Action, ignore_case))
                 return false;
