@@ -11,7 +11,6 @@ namespace WebStoreApp.Controllers
     public class CatalogController : Controller
     {
         private readonly IProductData _ProductData;
-
         public CatalogController(IProductData ProductData) => _ProductData = ProductData;
 
         public IActionResult Shop(int? SectionId, int? BrandId, [FromServices] IMapper Mapper)
@@ -45,11 +44,5 @@ namespace WebStoreApp.Controllers
 
             return View((product.FromDTO().ToView()));
         }
-
-        public IActionResult CheckOut() => View();
-
-        public IActionResult Cart() => View();
-
-        public IActionResult Login() => View();
     }
 }

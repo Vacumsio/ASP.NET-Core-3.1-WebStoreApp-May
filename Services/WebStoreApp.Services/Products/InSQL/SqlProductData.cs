@@ -13,7 +13,8 @@ namespace WebStoreApp.Services.Products.InSQL
     {
         private readonly WebStoreDB _db;
         public SqlProductData(WebStoreDB db) => _db = db;
-        public IEnumerable<Brand> GetBrands() => _db.Brands;
+
+
 
         public ProductDTO GetProductById(int id) => _db.Products
             .Include(p => p.Brand)
@@ -43,5 +44,9 @@ namespace WebStoreApp.Services.Products.InSQL
         }
 
         public IEnumerable<Section> GetSections() => _db.Sections;
+        public Section GetSection(int id) => _db.Sections.Include(s => s.ParentSection).FirstOrDefault(e => e.Id == id);
+
+        public IEnumerable<Brand> GetBrands() => _db.Brands;
+        public Brand GetBrand(int id) => _db.Brands.Find(id);
     }
 }
