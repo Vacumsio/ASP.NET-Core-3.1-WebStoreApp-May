@@ -89,24 +89,24 @@ namespace WebStoreApp.Controllers
         public IActionResult AddToCartAPIi(int id)
         {
             _CartService.AddToCart(id);
-            return RedirectToAction(nameof(Details));
+            return Json(new {id, message = $"Товар id:{id} был отправлен в корзину" });
         }
 
         public IActionResult DecrementFromCartAPI(int id)
         {
             _CartService.DecrementFromCart(id);
-            return RedirectToAction(nameof(Details));
+            return Ok();
         }
 
         public IActionResult RemoveFromCartAPI(int id)
         {
             _CartService.RemoveFromCart(id);
-            return RedirectToAction(nameof(Details));
+            return Ok();
         }
         public IActionResult RemoveAllAPI()
         {
             _CartService.RemoveAll();
-            return RedirectToAction(nameof(Details));
+            return Ok();
         }
         #endregion
     }
