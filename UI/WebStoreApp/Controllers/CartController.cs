@@ -86,7 +86,7 @@ namespace WebStoreApp.Controllers
         #region WebApi methods for JS
         public IActionResult GetCartView() => ViewComponent("Cart");
 
-        public IActionResult AddToCartAPIi(int id)
+        public IActionResult AddToCartAPI(int id)
         {
             _CartService.AddToCart(id);
             return Json(new {id, message = $"Товар id:{id} был отправлен в корзину" });

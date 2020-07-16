@@ -16,10 +16,15 @@
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
 
-<script src="~/js/CartLogic.js"></script>
+<script src="~/js/Cart/CartLogics.js" asp-append-version="true"></script>
 
 <script>
-    function() {
-        
-    }
+    $(function() {
+        Cart.init({
+            getCartViewLink: "@Url.Action("GetCartView","Cart")",
+            addToCartLink: "@Url.Action("AddToCartAPI","Cart")",
+            decrementLink: "@Url.Action("DecrementFromCartAPI","Cart")",
+            removeFromCart: "@Url.Action("RemoveFromCartAPI","Cart")"
+        });
+    })
 </script>
