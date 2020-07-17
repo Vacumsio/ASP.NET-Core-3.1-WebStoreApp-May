@@ -14,15 +14,13 @@ namespace WebStoreApp.Services.Products.InSQL
         private readonly WebStoreDB _db;
         public SqlProductData(WebStoreDB db) => _db = db;
 
-
-
         public ProductDTO GetProductById(int id) => _db.Products
             .Include(p => p.Brand)
             .Include(p => p.Section)
             .FirstOrDefault(p => p.Id == id)
             .ToDTO();
 
-        public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null)
+        public PageProductsDTO GetProducts(ProductFilter Filter = null)
         {
             IQueryable<Product> query = _db.Products
             .Include(p => p.Brand)
@@ -40,7 +38,18 @@ namespace WebStoreApp.Services.Products.InSQL
             {
                 query = query.Where(product => product.SectionId == Filter.SectionId);
             }
-            return query.Select(p=>p.ToDTO());
+            var total_count = query.Count();
+
+            if (Filter?.PageSize > 0)
+                query = query
+                   .Skip((Filter.Page - 1) * (int)Filter.PageSize)
+                   .Take((int)Filter.PageSize);
+
+            return new PageProductsDTO
+            {
+                Products = query.Select(p => p.ToDTO()),
+                TotalCount = total_count
+            };
         }
 
         public IEnumerable<Section> GetSections() => _db.Sections;

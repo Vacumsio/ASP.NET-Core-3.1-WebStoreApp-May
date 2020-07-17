@@ -14,7 +14,7 @@
 
     initEvents: function () {
         $(".add-to-cart").click(Cart.addToCart);
-        $(".cart-quantity-up").click(Cart.incrementItem);
+        $(".cart_quantity_up").click(Cart.incrementItem);
         $(".cart_quantity_down").click(Cart.decrementItem);
         $(".cart_quantity_delete").click(Cart.removeItem);
     },
@@ -64,7 +64,7 @@
                 Cart.refreshPrice(container);
                 Cart.refreshCartView();
             })
-            .fail(function () { console.log("decrementItem fail"); });
+            .fail(function () { console.log("incrementItem fail"); });
     },
 
     decrementItem: function (event) {
