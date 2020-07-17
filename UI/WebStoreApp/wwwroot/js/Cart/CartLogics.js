@@ -15,14 +15,14 @@
     initEvents: function () {
         $(".add-to-cart").click(Cart.addToCart);
         $(".cart-quantity-up").click(Cart.incrementItem);
-        //$(".cart_quantity_down").click(Cart.decrementItem);
-        //$(".cart_quantity_delete").click(Cart.removeItem);
+        $(".cart_quantity_down").click(Cart.decrementItem);
+        $(".cart_quantity_delete").click(Cart.removeItem);
     },
 
     addToCart: function (event) {
         event.preventDefault();
 
-        const button = $(this);
+        var button = $(this);
         const id = button.data("id"); // data-id="..."
 
         $.get(Cart._properties.addToCartLink + "/" + id)
