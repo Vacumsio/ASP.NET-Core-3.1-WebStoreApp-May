@@ -22,22 +22,19 @@ namespace WebStoreApp.Services.Products.InSQL
 
         public PageProductsDTO GetProducts(ProductFilter Filter = null)
         {
-            IQueryable<Product> query = _db.Products
-            .Include(p => p.Brand)
-            .Include(p => p.Section);
+            IQueryable<Product> query = _db.Products;
 
-            if (Filter?.Ids != null)
-            {
+            if (Filter?.Ids?.Length > 0)
                 query = query.Where(product => Filter.Ids.Contains(product.Id));
-            }
-            if (Filter?.BrandId != null)
+            else
             {
-                query = query.Where(product => product.BrandId == Filter.BrandId);
+                if (Filter?.BrandId != null)
+                    query = query.Where(product => product.BrandId == Filter.BrandId);
+
+                if (Filter?.SectionId != null)
+                    query = query.Where(product => product.SectionId == Filter.SectionId);
             }
-            if (Filter?.SectionId != null)
-            {
-                query = query.Where(product => product.SectionId == Filter.SectionId);
-            }
+
             var total_count = query.Count();
 
             if (Filter?.PageSize > 0)
