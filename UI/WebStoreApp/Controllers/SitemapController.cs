@@ -14,7 +14,7 @@ namespace WebStoreApp.Controllers
             {
                 new SitemapNode(Url.Action("Index", "Home")),
                 new SitemapNode(Url.Action("Index", "ContactUs")),
-                new SitemapNode(Url.Action("Blog", "Blog")),
+                new SitemapNode(Url.Action("BlogList", "Blog")),
                 new SitemapNode(Url.Action("BlogSingle", "Blog")),
                 new SitemapNode(Url.Action("Shop", "Catalog")),
                 new SitemapNode(Url.Action("Index", "WebApiTest")),
