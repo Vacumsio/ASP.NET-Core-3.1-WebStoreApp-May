@@ -37,7 +37,7 @@ namespace WebStoreApp.TagHelpers
             for (int i = 1, total_pages = PageModel.TotalPages; i < total_pages; i++)
                 ul.InnerHtml.AppendHtml(CreateItem(i, url_helper));
 
-            base.Process(context, output);
+            output.Content.AppendHtml(ul);
         }
 
         private TagBuilder CreateItem(int PageNumber, IUrlHelper url)
