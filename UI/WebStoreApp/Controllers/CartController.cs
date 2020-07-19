@@ -9,14 +9,18 @@ namespace WebStoreApp.Controllers
 {
     public class CartController : Controller
     {
+        #region CTOR
         private readonly ICartService _CartService;
         public CartController(ICartService CartService) => _CartService = CartService;
+        #endregion
+
         public IActionResult Details() => View(new CartOrderViewModel
         {
             Cart = _CartService.TransformFromCart(),
             Order = new OrderViewModel()
         });
 
+        #region Methods in that case if JS is not loaded
         public IActionResult AddToCart(int id)
         {
             _CartService.AddToCart(id);
@@ -39,6 +43,7 @@ namespace WebStoreApp.Controllers
             _CartService.RemoveAll();
             return RedirectToAction(nameof(Details));
         }
+        #endregion
 
         [HttpPost]
         public async Task<IActionResult> Checkout(OrderViewModel Model, [FromServices] IOrderService OrderService)
@@ -71,11 +76,38 @@ namespace WebStoreApp.Controllers
 
             return RedirectToAction(nameof(OrderConfirmed), new { id = order.Id });
         }
-
         public IActionResult OrderConfirmed(int id)
         {
             ViewBag.OrderId = id;
             return View();
         }
+
+
+        #region WebApi methods for JS
+        public IActionResult GetCartView() => ViewComponent("Cart");
+
+        public IActionResult AddToCartAPI(int id)
+        {
+            _CartService.AddToCart(id);
+            return Json(new {id, message = $"Товар id:{id} был отправлен в корзину" });
+        }
+
+        public IActionResult DecrementFromCartAPI(int id)
+        {
+            _CartService.DecrementFromCart(id);
+            return Ok();
+        }
+
+        public IActionResult RemoveFromCartAPI(int id)
+        {
+            _CartService.RemoveFromCart(id);
+            return Ok();
+        }
+        public IActionResult RemoveAllAPI()
+        {
+            _CartService.RemoveAll();
+            return Ok();
+        }
+        #endregion
     }
 }

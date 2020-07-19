@@ -14,7 +14,7 @@ namespace WebStoreApp.Controllers
             {
                 new SitemapNode(Url.Action("Index", "Home")),
                 new SitemapNode(Url.Action("Index", "ContactUs")),
-                new SitemapNode(Url.Action("Blog", "Blog")),
+                new SitemapNode(Url.Action("BlogList", "Blog")),
                 new SitemapNode(Url.Action("BlogSingle", "Blog")),
                 new SitemapNode(Url.Action("Shop", "Catalog")),
                 new SitemapNode(Url.Action("Index", "WebApiTest")),
@@ -25,7 +25,7 @@ namespace WebStoreApp.Controllers
             foreach (var brand in ProductData.GetBrands())
                 nodes.Add(new SitemapNode(Url.Action("Shop", "Catalog", new { BrandId = brand.Id })));
 
-            foreach (var product in ProductData.GetProducts())
+            foreach (var product in ProductData.GetProducts().Products)
                 nodes.Add(new SitemapNode(Url.Action("Details", "Catalog", new { product.Id })));
 
             return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));

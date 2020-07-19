@@ -14,33 +14,39 @@ namespace WebStoreApp.Services.Products.InSQL
         private readonly WebStoreDB _db;
         public SqlProductData(WebStoreDB db) => _db = db;
 
-
-
         public ProductDTO GetProductById(int id) => _db.Products
             .Include(p => p.Brand)
             .Include(p => p.Section)
             .FirstOrDefault(p => p.Id == id)
             .ToDTO();
 
-        public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter = null)
+        public PageProductsDTO GetProducts(ProductFilter Filter = null)
         {
-            IQueryable<Product> query = _db.Products
-            .Include(p => p.Brand)
-            .Include(p => p.Section);
+            IQueryable<Product> query = _db.Products;
 
-            if (Filter?.Ids != null)
-            {
+            if (Filter?.Ids?.Length > 0)
                 query = query.Where(product => Filter.Ids.Contains(product.Id));
-            }
-            if (Filter?.BrandId != null)
+            else
             {
-                query = query.Where(product => product.BrandId == Filter.BrandId);
+                if (Filter?.BrandId != null)
+                    query = query.Where(product => product.BrandId == Filter.BrandId);
+
+                if (Filter?.SectionId != null)
+                    query = query.Where(product => product.SectionId == Filter.SectionId);
             }
-            if (Filter?.SectionId != null)
+
+            var total_count = query.Count();
+
+            if (Filter?.PageSize > 0)
+                query = query
+                   .Skip((Filter.Page - 1) * (int)Filter.PageSize)
+                   .Take((int)Filter.PageSize);
+
+            return new PageProductsDTO
             {
-                query = query.Where(product => product.SectionId == Filter.SectionId);
-            }
-            return query.Select(p=>p.ToDTO());
+                Products = query.Select(p => p.ToDTO()),
+                TotalCount = total_count
+            };
         }
 
         public IEnumerable<Section> GetSections() => _db.Sections;

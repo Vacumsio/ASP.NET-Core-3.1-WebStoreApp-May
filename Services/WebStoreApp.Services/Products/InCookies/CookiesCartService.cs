@@ -76,6 +76,8 @@ namespace WebStoreApp.Services.Products.InCookies
             }
             if (item.Quantity > 0) item.Quantity--;
             if (item.Quantity == 0) cart.Items.Remove(item);
+
+            Cart = cart;
         }
 
         public void RemoveAll()
@@ -105,8 +107,8 @@ namespace WebStoreApp.Services.Products.InCookies
             var products = _ProductData.GetProducts(new ProductFilter
             {
                 Ids = Cart.Items.Select(item => item.ProductId).ToArray()
-            }); ;
-            var product_viewmodel = products.Select(p=>p.FromDTO()).ToView().ToDictionary(p => p.Id);
+            });
+            var product_viewmodel = products.Products.Select(p=>p.FromDTO()).ToView().ToDictionary(p => p.Id);
 
             return new CartViewModel
             {

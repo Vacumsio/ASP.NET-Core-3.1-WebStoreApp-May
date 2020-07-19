@@ -38,9 +38,11 @@ namespace WebStoreApp.Services.Tests
             _ProductDataMock = new Mock<IProductData>();
             _ProductDataMock
                .Setup(c => c.GetProducts(It.IsAny<ProductFilter>()))
-               .Returns(new List<ProductDTO>
+               .Returns(new PageProductsDTO
                 {
-                    new ProductDTO
+                   TotalCount = 2,
+                   Products= new List<ProductDTO>
+                   { new ProductDTO
                     {
                         Id = 1,
                         Name = "Product 1",
@@ -60,6 +62,7 @@ namespace WebStoreApp.Services.Tests
                         Brand = new BrandDTO { Id = 2, Name = "Brand 2" },
                         Section = new SectionDTO { Id = 2, Name = "Section 2"}
                     },
+                   }                    
                 });
             _CartStoreMock = new Mock<ICartStore>();
             _CartStoreMock.Setup(c => c.Cart).Returns(_Cart);
