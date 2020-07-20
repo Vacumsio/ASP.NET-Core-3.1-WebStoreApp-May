@@ -358,3 +358,4 @@ healthchecksdb
 /WebStoreApp/wwwroot/js
 /Services/WebStoreApp.ServiceHosting/Logs
 /UI/WebStoreApp/Logs
+/UI/WebStoreApp/wwwroot/lib
