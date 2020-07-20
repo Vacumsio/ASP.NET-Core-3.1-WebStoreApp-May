@@ -13,7 +13,7 @@
 
         const button = $(this);
 
-        if (button.prop("href") > 0) {
+        if (button.prop("href").length > 0) {
 
             const page = button.data("page");
 
