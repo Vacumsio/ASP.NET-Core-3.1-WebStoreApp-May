@@ -18,6 +18,7 @@ using WebStoreApp.Interfaces.TestApi;
 using WebStoreApp.Services.Products.InCookies;
 using WebStoreApp.Logger;
 using Microsoft.Extensions.Logging;
+using WebStoreApp.Hubs;
 using WebStoreApp.Infrastructure.Middleware;
 
 namespace WebStoreApp
@@ -29,6 +30,8 @@ namespace WebStoreApp
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSignalR();
+
             services.AddIdentity<User, Role>()
                .AddDefaultTokenProviders();
 
@@ -113,6 +116,8 @@ namespace WebStoreApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<InformationHub>("/info");
+
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"

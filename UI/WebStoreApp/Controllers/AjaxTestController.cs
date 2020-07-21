@@ -34,5 +34,7 @@ namespace WebStoreApp.Controllers
                 DateTime = DateTime.Now
             });
         }
+
+        public IActionResult SignalRTest() => View();
     }
 }
