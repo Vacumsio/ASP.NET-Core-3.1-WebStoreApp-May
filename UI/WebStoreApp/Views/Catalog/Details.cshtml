@@ -54,7 +54,7 @@
                     <div class="col-sm-7">
                         <div class="product-information">
                             <!--/product-information-->
-                            <img src="~/images/shop/@Model.ImageUrl" class="newarrival" alt="" />
+                            <img src="~/images/shop/@Model.ImageUrl" class="" alt="" />@*newarrival*@
                             <h2>@Model.Name</h2>
                             <p>Web ID: @Model.Id.ToString("0000000")</p>
                             <img src="~/images/product-details/rating.png" alt="" />
@@ -62,9 +62,9 @@
                                 <span>@Model.Price.ToString("C")</span>
                                 <label>Quantity:</label>
                                 <input type="text" value="3" />
-                                <a asp-controller="Cart" 
-                                   asp-action="AddToCart" 
-                                   asp-route-id="@Model.Id" 
+                                <a asp-controller="Cart"
+                                   asp-action="AddToCart"
+                                   asp-route-id="@Model.Id"
                                    data-id="@Model.Id"
                                    class="btn btn-default cart add-to-cart">
                                     <i class="fa fa-shopping-cart"></i>

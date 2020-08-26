@@ -1,5 +1,5 @@
 ﻿<ul class="nav navbar-nav collapse navbar-collapse">
-    <li><a is-active-route ignore-action asp-controller="Home" asp-action="Index">На главную</a></li>
+    <li><a is-active-route ignore-action asp-controller="Home" asp-action="Index">Главная</a></li>
     <li class="dropdown">
         <a is-active-route ignore-action asp-controller="Catalog" asp-action="Shop">Магазин<i class="fa fa-angle-down"></i></a>
         <ul role="menu" class="sub-menu">
@@ -13,12 +13,21 @@
             <li><a asp-controller="Blog" asp-action="BlogSingle">Blog Single</a></li>
         </ul>
     </li>
-    <li><a is-active-route ignore-action asp-controller="Error" asp-action="Index">Ошибка 404</a></li>
+    
     <li><a is-active-route ignore-action asp-controller="ContactUS" asp-action="Index">Контакты</a></li>
     <li><a is-active-route ignore-action asp-controller="Employees" asp-action="Index">Сотрудники</a></li>
-    <li><a is-active-route ignore-action asp-controller="WebApiTest" asp-action="Index">WebAPI test</a></li>
+    
+    <li class="dropdown">
+        <a a is-active-route ignore-action asp-controller="AjaxTest" asp-action="Index">Тестовые макеты<i class="fa fa-angle-down"></i></a>
+        <ul role="menu" class="sub-menu">
+            <li><a is-active-route ignore-action asp-controller="WebApiTest" asp-action="Index">WebAPI</a></li>
+            <li><a is-active-route ignore-action asp-controller="AjaxTest" asp-action="Index">AJAX</a></li>
+            <li><a is-active-route ignore-action asp-controller="AjaxTest" asp-action="SignalRTest">SignalR</a></li>
+            <li><a is-active-route ignore-action asp-controller="Error" asp-action="Index">Настроить РЕДИРЕКТ!! => Ошибка 404</a></li>
+        </ul>
+    </li>
 </ul>
-@*class="@IsActive("WebApiTest", "Index")"*@
+
 @functions{
     string IsActive(string Controller, string Action) =>
         Equals(Controller, ViewContext.RouteData.Values["Controller"])

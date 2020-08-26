@@ -115,6 +115,13 @@ namespace WebStoreApp.Controllers
 
         #endregion
 
+        public async Task<IActionResult> IsNameFree(string UserName)
+        {
+            var user = await _UserManager.FindByNameAsync(UserName);
+            _Logger.LogInformation("Пользователь {0} {1} существует", UserName, user is null ? "не" : null);
+            return Json(user is null ? "true" : "Пользователь с таким именем уже существует");
+        }
+
         public async Task<IActionResult> Logout()
         {
             var user_name = User.Identity.Name;
